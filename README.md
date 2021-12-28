@@ -1,4 +1,4 @@
-# Isabelle/HOL Formalization of "Knight's Tour Revisited" (Cull and De Curtis, 1978)
+# Isabelle/HOL Formalization of "Knight's Tour Revisited" (Cull and De Curtins, 1978)
 
 ## References
 
