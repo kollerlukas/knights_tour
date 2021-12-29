@@ -26,6 +26,8 @@
 % this should be the last package used
 \usepackage{pdfsetup}
 
+\usepackage{float}
+
 % urls in roman style, theory text in math-similar italics
 \urlstyle{rm}
 \isabellestyle{it}
@@ -33,11 +35,9 @@
 % for uniform font size
 %\renewcommand{\isastyle}{\isastyleminor}
 
-\bibliography{refs}
-
 \begin{document}
 
-\title{Formalization of "Knight's Tour Revisited" \cite{cull_decurtins_1987}}
+\title{Formalization of "Knight's Tour Revisited"}
 \author{Lukas Koller}
 \maketitle
 
@@ -50,10 +50,8 @@
 \input{session}
 
 % optional bibliography
-%\bibliographystyle{abbrv}
-%\bibliography{root}
-
-\printbibliography
+\bibliographystyle{abbrv}
+\bibliography{refs}
 
 \end{document}
 

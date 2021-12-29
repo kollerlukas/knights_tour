@@ -20,6 +20,7 @@ def valid_steps(si,b):
   i,j = si
   steps = [(i+1,j+2),(i-1,j+2),(i+1,j-2),(i-1,j-2),(i+2,j+1),(i-2,j+1),(i+2,j-1),(i-2,j-1)]
   valid_steps = [s for s in steps if s in b]
+  # sort the valid steps by the number of unvisited neighbors; try to visit worse reachable squares first
   valid_steps = sorted(valid_steps, key=lambda si: num_neighbors(si,b))
   return valid_steps
 
@@ -44,6 +45,7 @@ def path_to_matrix(n,m,p):
   for k, sk in enumerate(p):
     i,j = sk
     m[i-1][j-1] = k+1
+  m.reverse() # s.t. (1,1) is the lower-left corner as in (Cull and De Curtains, 1978)
   return m
 
 # compute the paths

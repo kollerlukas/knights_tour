@@ -64,6 +64,8 @@ section \<open>Executable Checker for a Knight's Path\<close>
 text \<open>This section gives the implementation and correctness-proof for an executable checker for a
 knights-path wrt. the definition @{const knights_path}.\<close>
 
+subsection \<open>Implementation of an Executable Checker\<close>
+
 fun row_exec :: "nat \<Rightarrow> int set" where
   "row_exec 0 = {}"
 | "row_exec m = insert (int m) (row_exec (m-1))"
@@ -160,7 +162,7 @@ corollary knights_circuit_exec_simp:
   "knights_circuit (board n m) ps \<longleftrightarrow> circuit_checker (board_exec n m) ps"
   using board_exec_correct circuit_checker_correct[symmetric] by simp
 
-section \<open>Proof for Properties of @{const knights_path} and @{const knights_circuit}}\<close>
+section \<open>Proof for some Properties of @{const knights_path} and @{const knights_circuit}\<close>
 
 lemma board_leq_subset: "n\<^sub>1 \<le> n\<^sub>2 \<and> m\<^sub>1 \<le> m\<^sub>2 \<Longrightarrow> board n\<^sub>1 m\<^sub>1 \<subseteq> board n\<^sub>2 m\<^sub>2"
   unfolding board_def by auto
@@ -1109,7 +1111,7 @@ proof -
 qed
 
 text \<open>Transposing (\<open>transpose\<close>) and mirroring (along first axis \<open>mirror1\<close>) a Knight's path 
-preserves the Knight's path's property. Tranpose+Mirror1 equals a 90\<degree>-clockwise turn.\<close>
+preserves the Knight's path's property. Tranpose+Mirror1 equals a 90deg-clockwise turn.\<close>
 corollary rot90_knights_path:
   assumes "knights_path (board n m) ps" 
   shows "knights_path (board m n) (mirror1 (transpose ps))"
@@ -1142,6 +1144,8 @@ section \<open>Path and Board Translation\<close>
 text \<open>When constructing knight's paths for larger boards multiple knight's paths for smaller boards
 are concatenated. To concatenate paths the the coordinates in the path need to be translated. 
 Therefore, simple auxiliary functions are provided.\<close>
+
+subsection \<open>Implementation of Path and Board Translation\<close>
 
 text \<open>Translate the coordinates for a path by \<open>(k\<^sub>1,k\<^sub>2)\<close>.\<close>
 fun trans_path :: "int \<times> int \<Rightarrow> path \<Rightarrow> path" where
@@ -1398,7 +1402,7 @@ lemma last_drop: "k < length xs \<Longrightarrow> last xs = last (drop k xs)"
   by (induction xs) auto
 
 text \<open>Concatenate two knight's path on a \<open>n\<times>m\<close>-board along the 2nd axis if the first path contains
-the step \<open>s\<^sub>i\<close> \<rightarrow> \<open>s\<^sub>j\<close> and there are valid steps \<open>s\<^sub>i\<close> \<rightarrow> \<open>hd ps\<^sub>2'\<close> and \<open>s\<^sub>j\<close> \<rightarrow> \<open>last ps\<^sub>2'\<close>, where 
+the step \<open>s\<^sub>i \<rightarrow> s\<^sub>j\<close> and there are valid steps \<open>s\<^sub>i \<rightarrow> hd ps\<^sub>2'\<close> and \<open>s\<^sub>j \<rightarrow> last ps\<^sub>2'\<close>, where 
 \<open>ps\<^sub>2'\<close> is \<open>ps\<^sub>2\<close> is translated by \<open>m\<^sub>1\<close>. An arbitrary step in \<open>ps\<^sub>2\<close> is preserved.\<close>
 corollary knights_path_split_concat_si_prev:
   assumes "knights_path (board n m\<^sub>1) ps\<^sub>1" "knights_path (board n m\<^sub>2) ps\<^sub>2" 
@@ -1592,11 +1596,13 @@ proof -
     using si by auto
 qed
 
-section \<open>Path Parser and Construction\<close>
+section \<open>Path Parser and Path Construction\<close>
 
-text \<open>In this section functions are implemented to parse and construct paths.\<close>
+text \<open>In this section functions are implemented to parse and construct paths. The parser converts 
+the matrix representation (\<open>(nat list) list\<close>) used in @{cite "cull_decurtins_1987" } to a path 
+(\<open>path\<close>).\<close>
 
-(* for debugging *)
+text \<open>for debugging\<close>
 fun test_path :: "path \<Rightarrow> bool" where
   "test_path (s\<^sub>i#s\<^sub>j#xs) = (step_checker s\<^sub>i s\<^sub>j \<and> test_path (s\<^sub>j#xs))"
 | "test_path _ = True"
@@ -1619,7 +1625,7 @@ fun find_k_sqr :: "nat \<Rightarrow> (nat list) list \<Rightarrow> square option
       None \<Rightarrow> f_opt (\<lambda>(i,j). (i+1,j)) (find_k_sqr k rs)
     | Some j \<Rightarrow> Some (1,j))"
 
-text \<open>Auxiliary function to easily parse precomputed squares from paper.\<close>
+text \<open>Auxiliary function to easily parse pre-computed boards from paper.\<close>
 fun to_sqrs :: "nat \<Rightarrow> (nat list) list \<Rightarrow> path option" where
   "to_sqrs 0 rs = Some []"
 | "to_sqrs k rs = (case find_k_sqr k rs of
@@ -1649,8 +1655,9 @@ in the upper-right corner. The tables shows the visited squares numbered in asce
 
 abbreviation "b5x5 \<equiv> board 5 5"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
+lower-right.
+  \begin{table}[H]
     \begin{tabular}{lllll}
        3 & 22 & 13 & 16 &  5 \\
       12 & 17 &  4 & 21 & 14 \\
@@ -1674,8 +1681,9 @@ lemma kp_5x5_lr_last: "last kp5x5lr = (2,4)" by eval
 
 lemma kp_5x5_lr_non_nil: "kp5x5lr \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
+upper-right.
+  \begin{table}[H]
     \begin{tabular}{lllll}
        7 & 12 & 15 & 20 &  5 \\
       16 & 21 &  6 & 25 & 14 \\
@@ -1701,8 +1709,9 @@ lemma kp_5x5_ur_non_nil: "kp5x5ur \<noteq> []" by eval
 
 abbreviation "b5x6 \<equiv> board 5 6"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>6)\<close>-board that starts in the lower-left and ends in the 
+lower-right.
+  \begin{table}[H]
     \begin{tabular}{llllll}
        7 & 14 & 21 & 28 &  5 & 12 \\
       22 & 27 &  6 & 13 & 20 & 29 \\
@@ -1726,8 +1735,9 @@ lemma kp_5x6_lr_last: "last kp5x6lr = (2,5)" by eval
 
 lemma kp_5x6_lr_non_nil: "kp5x6lr \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>6)\<close>-board that starts in the lower-left and ends in the 
+upper-right.
+  \begin{table}[H]
     \begin{tabular}{llllll}
        3 & 10 & 29 & 20 &  5 & 12 \\
       28 & 19 &  4 & 11 & 30 & 21 \\
@@ -1753,8 +1763,9 @@ lemma kp_5x6_ur_non_nil: "kp5x6ur \<noteq> []" by eval
 
 abbreviation "b5x7 \<equiv> board 5 7"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
+lower-right.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
        3 & 12 & 21 & 30 &  5 & 14 & 23 \\
       20 & 29 &  4 & 13 & 22 & 31 &  6 \\
@@ -1778,8 +1789,9 @@ lemma kp_5x7_lr_last: "last kp5x7lr = (2,6)" by eval
 
 lemma kp_5x7_lr_non_nil: "kp5x7lr \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-right.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
        3 & 32 & 11 & 34 &  5 & 26 & 13 \\
       10 & 19 &  4 & 25 & 12 & 35 &  6 \\
@@ -1805,8 +1817,9 @@ lemma kp_5x7_ur_non_nil: "kp5x7ur \<noteq> []" by eval
 
 abbreviation "b5x8 \<equiv> board 5 8"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>8)\<close>-board that starts in the lower-left and ends in the 
+lower-right.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
        3 & 12 & 37 & 26 &  5 & 14 & 17 & 28 \\
       34 & 23 &  4 & 13 & 36 & 27 &  6 & 15 \\
@@ -1830,8 +1843,9 @@ lemma kp_5x8_lr_last: "last kp5x8lr = (2,7)" by eval
 
 lemma kp_5x8_lr_non_nil: "kp5x8lr \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>8)\<close>-board that starts in the lower-left and ends in the 
+upper-right.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       33 &  8 & 17 & 38 & 35 &  6 & 15 & 24 \\
       18 & 37 & 34 &  7 & 16 & 25 & 40 &  5 \\
@@ -1858,7 +1872,8 @@ lemma kp_5x8_ur_non_nil: "kp5x8ur \<noteq> []" by eval
 abbreviation "b5x9 \<equiv> board 5 9"
 
 text \<open>
-  \begin{table}[]
+  A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the lower-right.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
        9 &  4 & 11 & 16 & 23 & 42 & 33 & 36 & 25 \\
       12 & 17 &  8 &  3 & 32 & 37 & 24 & 41 & 34 \\
@@ -1883,7 +1898,8 @@ lemma kp_5x9_lr_last: "last kp5x9lr = (2,8)" by eval
 lemma kp_5x9_lr_non_nil: "kp5x9lr \<noteq> []" by eval
 
 text \<open>
-  \begin{table}[]
+  A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the upper-right.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
        9 &  4 & 11 & 16 & 27 & 32 & 35 & 40 & 25 \\
       12 & 17 &  8 &  3 & 36 & 41 & 26 & 45 & 34 \\
@@ -2003,7 +2019,8 @@ section \<open>Paths and Circuits for \<open>6\<times>m\<close>-Boards\<close>
 abbreviation "b6x5 \<equiv> board 6 5"
 
 text \<open>
-  \begin{table}[]
+  A Knight's path for the \<open>(6\<times>5)\<close>-board that starts in the lower-left and ends in the upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllll}
       10 & 19 &  4 & 29 & 12 \\
        3 & 30 & 11 & 20 &  5 \\
@@ -2029,8 +2046,8 @@ lemma kp_6x5_ul_last: "last kp6x5ul = (5,2)" by eval
 
 lemma kp_6x5_ul_non_nil: "kp6x5ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(6\<times>5)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{lllll}
       16 &  9 &  6 & 27 & 18 \\
        7 & 26 & 17 & 14 &  5 \\
@@ -2057,9 +2074,8 @@ lemma kc_6x5_non_nil: "kc6x5 \<noteq> []" by eval
 abbreviation "b6x6 \<equiv> board 6 6"
 
 text \<open>The path given for the \<open>6\<times>6\<close>-board that ends in the upper-left is wrong. The Knight cannot 
-move from square 26 to square 27.\<close>
-text \<open>
-  \begin{table}[]
+move from square 26 to square 27.
+  \begin{table}[H]
     \begin{tabular}{llllll}
       14 & 23 &  6 & 28 & 12 & 21 \\
        7 & 36 & 13 & 22 &  5 & \color{red}{27} \\
@@ -2079,9 +2095,9 @@ abbreviation "kp6x6ul_wrong \<equiv> the (to_path
 
 value "path_checker (board_exec 6 6) kp6x6ul_wrong"
 
-text \<open>I have computed a correct path for the \<open>6\<times>6\<close>-board that ends in the upper-left.\<close>
-text \<open>
-  \begin{table}[]
+text \<open>I have computed a correct Knight's path for the \<open>6\<times>6\<close>-board that ends in the upper-left.
+A Knight's path for the \<open>(6\<times>6)\<close>-board that starts in the lower-left and ends in the upper-left.
+  \begin{table}[H]
     \begin{tabular}{llllll}
        8 & 25 & 10 & 21 &  6 & 23 \\
       11 & 36 &  7 & 24 & 33 & 20 \\
@@ -2107,8 +2123,8 @@ lemma kp_6x6_ul_last: "last kp6x6ul = (5,2)" by eval
 
 lemma kp_6x6_ul_non_nil: "kp6x6ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(6\<times>6)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{llllll}
        4 & 25 & 34 & 15 & 18 &  7 \\
       35 & 14 &  5 &  8 & 33 & 16 \\
@@ -2134,8 +2150,9 @@ lemma kc_6x6_non_nil: "kc6x6 \<noteq> []" by eval
 
 abbreviation "b6x7 \<equiv> board 6 7"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(6\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
       18 & 23 &  8 & 39 & 16 & 25 &  6 \\
        9 & 42 & 17 & 24 &  7 & 40 & 15 \\
@@ -2161,8 +2178,8 @@ lemma kp_6x7_ul_last: "last kp6x7ul = (5,2)" by eval
 
 lemma kp_6x7_ul_non_nil: "kp6x7ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(6\<times>7)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
       26 & 37 &  8 & 17 & 28 & 31 &  6 \\
        9 & 18 & 27 & 36 &  7 & 16 & 29 \\
@@ -2188,8 +2205,9 @@ lemma kc_6x7_non_nil: "kc6x7 \<noteq> []" by eval
 
 abbreviation "b6x8 \<equiv> board 6 8"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(6\<times>8)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       18 & 31 &  8 & 35 & 16 & 33 &  6 & 45 \\
        9 & 48 & 17 & 32 &  7 & 46 & 15 & 26 \\
@@ -2215,8 +2233,8 @@ lemma kp_6x8_ul_last: "last kp6x8ul = (5,2)" by eval
 
 lemma kp_6x8_ul_non_nil: "kp6x8ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(6\<times>8)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       30 & 35 &  8 & 15 & 28 & 39 &  6 & 13 \\
        9 & 16 & 29 & 36 &  7 & 14 & 27 & 38 \\
@@ -2242,8 +2260,9 @@ lemma kc_6x8_non_nil: "kc6x8 \<noteq> []" by eval
 
 abbreviation "b6x9 \<equiv> board 6 9"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(6\<times>9)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       22 & 45 & 10 & 53 & 20 & 47 &  8 & 35 & 18 \\
       11 & 54 & 21 & 46 &  9 & 36 & 19 & 48 &  7 \\
@@ -2269,8 +2288,8 @@ lemma kp_6x9_ul_last: "last kp6x9ul = (5,2)" by eval
 
 lemma kp_6x9_ul_non_nil: "kp6x9ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(6\<times>9)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       14 & 49 &  4 & 51 & 24 & 39 &  6 & 29 & 22 \\
        3 & 52 & 13 & 40 &  5 & 32 & 23 & 42 &  7 \\
@@ -2386,8 +2405,9 @@ section \<open>Paths and Circuits for \<open>8\<times>m\<close>-Boards\<close>
 
 abbreviation "b8x5 \<equiv> board 8 5"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(8\<times>5)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllll}
       28 &  7 & 22 & 39 & 26 \\
       23 & 40 & 27 &  6 & 21 \\
@@ -2417,8 +2437,8 @@ lemma kp_8x5_ul_last: "last kp8x5ul = (7,2)" by eval
 
 lemma kp_8x5_ul_non_nil: "kp8x5ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(8\<times>5)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{lllll}
       26 &  7 & 28 & 15 & 24 \\
       31 & 16 & 25 &  6 & 29 \\
@@ -2457,8 +2477,9 @@ qed
 
 abbreviation "b8x6 \<equiv> board 8 6"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(8\<times>6)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{llllll}
       42 & 11 & 26 &  9 & 34 & 13 \\
       25 & 48 & 43 & 12 & 27 &  8 \\
@@ -2488,10 +2509,9 @@ lemma kp_8x6_ul_last: "last kp8x6ul = (7,2)" by eval
 
 lemma kp_8x6_ul_non_nil: "kp8x6ul \<noteq> []" by eval
 
-text \<open>I have reversed circuit s.t. the circuit steps from \<open>(2,5)\<close> to \<open>(4,6)\<close> and not the other 
-way around. This makes the proofs easier.\<close>
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(8\<times>6)\<close>-board. I have reversed circuit s.t. the circuit steps 
+from \<open>(2,5)\<close> to \<open>(4,6)\<close> and not the other way around. This makes the proofs easier.
+  \begin{table}[H]
     \begin{tabular}{llllll}
        8 & 29 & 24 & 45 & 12 & 37 \\
       25 & 46 &  9 & 38 & 23 & 44 \\
@@ -2499,7 +2519,7 @@ text \<open>
       47 & 26 & 39 & 10 & 43 & 22 \\
        6 & 31 &  4 & 27 & 14 & 35 \\
        3 & 48 & 17 & 40 & 21 & 42 \\
-      32 &  5 &  2 & 19 & 34 & 15 \\                   
+      32 &  5 &  2 & 19 & 34 & 15 \\
        1 & 18 & 33 & 16 & 41 & 20
     \end{tabular}
   \end{table}\<close>
@@ -2528,8 +2548,9 @@ qed
 
 abbreviation "b8x7 \<equiv> board 8 7"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(8\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
       38 & 19 &  6 & 55 & 46 & 21 &  8 \\
        5 & 56 & 39 & 20 &  7 & 54 & 45 \\
@@ -2559,10 +2580,9 @@ lemma kp_8x7_ul_last: "last kp8x7ul = (7,2)" by eval
 
 lemma kp_8x7_ul_non_nil: "kp8x7ul \<noteq> []" by eval
 
-text \<open>I have reversed circuit s.t. the circuit steps from \<open>(2,6)\<close> to \<open>(4,7)\<close> and not the other 
-way around. This makes the proofs easier.\<close>
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(8\<times>7)\<close>-board. I have reversed circuit s.t. the circuit steps 
+from \<open>(2,6)\<close> to \<open>(4,7)\<close> and not the other way around. This makes the proofs easier.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
       36 & 31 & 18 & 53 & 20 & 29 & 44 \\
       17 & 54 & 35 & 30 & 45 & 52 & 21 \\
@@ -2600,9 +2620,8 @@ qed
 abbreviation "b8x8 \<equiv> board 8 8"
 
 text \<open>The path given for the \<open>8\<times>8\<close>-board that ends in the upper-left is wrong. The Knight cannot 
-move from square 27 to square 28.\<close>
-text \<open>
-  \begin{table}[]
+move from square 27 to square 28.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       24 & 11 & 37 &  9 & 26 & 21 & 39 &  7 \\
       36 & 64 & 24 & 22 & 38 &  8 & \color{red}{27} & 20 \\
@@ -2626,9 +2645,8 @@ abbreviation "kp8x8ul_wrong \<equiv> the (to_path
 
 value "path_checker (board_exec 8 8) kp8x8ul_wrong"
 
-text \<open>I have computed a correct path for the \<open>8\<times>8\<close>-board that ends in the upper-left.\<close>
-text \<open>
-  \begin{table}[]
+text \<open>I have computed a correct Knight's path for the \<open>8\<times>8\<close>-board that ends in the upper-left.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       38 & 41 & 36 & 27 & 32 & 43 & 20 & 25 \\
       35 & 64 & 39 & 42 & 21 & 26 & 29 & 44 \\
@@ -2659,8 +2677,8 @@ lemma kp_8x8_ul_last: "last kp8x8ul = (7,2)" by eval
 
 lemma kp_8x8_ul_non_nil: "kp8x8ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(8\<times>8)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{llllllll}
       48 & 13 & 30 &  9 & 56 & 45 & 28 &  7 \\
       31 & 10 & 47 & 50 & 29 &  8 & 57 & 44 \\
@@ -2697,8 +2715,9 @@ qed
 
 abbreviation "b8x9 \<equiv> board 8 9"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(8\<times>9)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       32 & 47 &  6 & 71 & 30 & 45 &  8 & 43 & 26 \\
        5 & 72 & 31 & 46 &  7 & 70 & 27 & 22 &  9 \\
@@ -2728,8 +2747,8 @@ lemma kp_8x9_ul_last: "last kp8x9ul = (7,2)" by eval
 
 lemma kp_8x9_ul_non_nil: "kp8x9ul \<noteq> []" by eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's circuit for the \<open>(8\<times>9)\<close>-board.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       42 & 19 & 38 &  5 & 36 & 21 & 34 &  7 & 60 \\
       39 &  4 & 41 & 20 & 63 &  6 & 59 & 22 & 33 \\
@@ -2860,8 +2879,9 @@ section \<open>Paths and Circuits for \<open>n\<times>m\<close>-Boards\<close>
 text \<open>In this section the desired theorems are proved. The proof uses the previous lemmas to 
 construct paths and circuits for arbitrary \<open>n\<times>m\<close>-boards.\<close>
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllll}
        7 & 20 &  9 & 14 &  5 \\
       10 & 25 &  6 & 21 & 16 \\
@@ -2879,8 +2899,9 @@ abbreviation "kp5x5ul \<equiv> the (to_path
 lemma kp_5x5_ul: "knights_path b5x5 kp5x5ul"
   by (simp only: knights_path_exec_simp) eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
       17 & 14 & 25 &  6 & 19 &  8 & 29 \\
       26 & 35 & 18 & 15 & 28 &  5 & 20 \\
@@ -2898,8 +2919,9 @@ abbreviation "kp5x7ul \<equiv> the (to_path
 lemma kp_5x7_ul: "knights_path b5x7 kp5x7ul"
   by (simp only: knights_path_exec_simp) eval
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
        7 & 12 & 37 & 42 &  5 & 18 & 23 & 32 & 27 \\
       38 & 45 &  6 & 11 & 36 & 31 & 26 & 19 & 24 \\
@@ -2919,8 +2941,9 @@ lemma kp_5x9_ul: "knights_path b5x9 kp5x9ul"
 
 abbreviation "b7x7 \<equiv> board 7 7"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(7\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
        9 & 30 & 19 & 42 &  7 & 32 & 17 \\
       20 & 49 &  8 & 31 & 18 & 43 &  6 \\
@@ -2944,8 +2967,9 @@ lemma kp_7x7_ul: "knights_path b7x7 kp7x7ul"
 
 abbreviation "b7x9 \<equiv> board 7 9"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(7\<times>9)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       59 &  4 & 17 & 50 & 37 &  6 & 19 & 30 & 39 \\
       16 & 63 & 58 &  5 & 18 & 51 & 38 &  7 & 20 \\
@@ -2969,8 +2993,9 @@ lemma kp_7x9_ul: "knights_path b7x9 kp7x9ul"
 
 abbreviation "b9x7 \<equiv> board 9 7"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(9\<times>7)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllll}
        5 & 20 & 53 & 48 &  7 & 22 & 31 \\
       52 & 63 &  6 & 21 & 32 & 55 &  8 \\
@@ -2998,8 +3023,9 @@ lemma kp_9x7_ul: "knights_path b9x7 kp9x7ul"
 
 abbreviation "b9x9 \<equiv> board 9 9"
 
-text \<open>
-  \begin{table}[]
+text \<open>A Knight's path for the \<open>(9\<times>9)\<close>-board that starts in the lower-left and ends in the 
+upper-left.
+  \begin{table}[H]
     \begin{tabular}{lllllllll}
       13 & 26 & 39 & 52 & 11 & 24 & 37 & 50 &  9 \\
       40 & 81 & 12 & 25 & 38 & 51 & 10 & 23 & 36 \\
