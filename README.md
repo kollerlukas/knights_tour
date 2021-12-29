@@ -21,7 +21,8 @@ and (ii) the pre-computed path for the `8×8` board that ends in the upper-left 
 false. I.e. on the `6×6` board the Knight cannot step from square 26 to square 27; in the `8×8` 
 board the Knight cannot step from square 27 to square 28.
 
-I have computed a correct path for the `6×6` board.
+I have computed a correct paths for the `6×6` and `8×8` board that start in the lower left and end
+in the upper-left.
 
 | 8  | 25 | 10 | 21 | 6  | 23 |
 |----|----|----|----|----|----|
@@ -30,6 +31,16 @@ I have computed a correct path for the `6×6` board.
 | 35 | 12 | 15 | 30 | 19 | 32 |
 | 14 | 27 | 2  | 17 | 4  | 29 |
 | 1  | 16 | 13 | 28 | 31 | 18 |
+
+| 38 | 41 | 36 | 27 | 32 | 43 | 20 | 25 | 
+|----|----|----|----|----|----|----|----| 
+| 35 | 64 | 39 | 42 | 21 | 26 | 29 | 44 | 
+| 40 | 37 | 6  | 33 | 28 | 31 | 24 | 19 | 
+| 5  | 34 | 63 | 14 | 7  | 22 | 45 | 30 | 
+| 62 | 13 | 4  | 9  | 58 | 49 | 18 | 23 | 
+| 3  | 10 | 61 | 52 | 15 | 8  | 57 | 46 | 
+| 12 | 53 | 2  | 59 | 48 | 55 | 50 | 17 | 
+| 1  | 60 | 11 | 54 | 51 | 16 | 47 | 56
 
 ## References
 
