@@ -2605,8 +2605,8 @@ text \<open>
   \begin{table}[]
     \begin{tabular}{llllllll}
       24 & 11 & 37 &  9 & 26 & 21 & 39 &  7 \\
-      36 & 64 & 24 & 22 & 38 &  8 & 27 & 20 \\
-      12 & 23 & 10 & 53 & 58 & 49 &  6 & 28 \\
+      36 & 64 & 24 & 22 & 38 &  8 & \color{red}{27} & 20 \\
+      12 & 23 & 10 & 53 & 58 & 49 &  6 & \color{red}{28} \\
       63 & 35 & 61 & 50 & 55 & 52 & 19 & 40 \\
       46 & 13 & 54 & 57 & 48 & 59 & 29 &  5 \\
       34 & 62 & 47 & 60 & 51 & 56 & 41 & 18 \\
@@ -2614,7 +2614,7 @@ text \<open>
        1 & 33 & 15 & 44 &  3 & 31 & 17 & 42
     \end{tabular}
   \end{table}\<close>
-abbreviation "kp8x8ul \<equiv> the (to_path 
+abbreviation "kp8x8ul_wrong \<equiv> the (to_path 
   [[24,11,37,9,26,21,39,7],
   [36,64,25,22,38,8,27,20],
   [12,23,10,53,58,49,6,28],
@@ -2622,12 +2622,36 @@ abbreviation "kp8x8ul \<equiv> the (to_path
   [46,13,54,57,48,59,29,5],
   [34,62,47,60,51,56,41,18],
   [14,45,2,32,16,43,4,30],
-  [1,33,15,44,3,31,17,42]])" (* 27 \<rightarrow> 28 *)
+  [1,33,15,44,3,31,17,42]])"
 
-value "path_checker (board_exec 8 8) kp8x8ul"
+value "path_checker (board_exec 8 8) kp8x8ul_wrong"
+
+text \<open>I have computed a correct path for the \<open>8\<times>8\<close>-board that ends in the upper-left.\<close>
+text \<open>
+  \begin{table}[]
+    \begin{tabular}{llllllll}
+      38 & 41 & 36 & 27 & 32 & 43 & 20 & 25 \\
+      35 & 64 & 39 & 42 & 21 & 26 & 29 & 44 \\
+      40 & 37 &  6 & 33 & 28 & 31 & 24 & 19 \\
+       5 & 34 & 63 & 14 &  7 & 22 & 45 & 30 \\
+      62 & 13 &  4 &  9 & 58 & 49 & 18 & 23 \\
+       3 & 10 & 61 & 52 & 15 &  8 & 57 & 46 \\
+      12 & 53 &  2 & 59 & 48 & 55 & 50 & 17 \\
+       1 & 60 & 11 & 54 & 51 & 16 & 47 & 56
+    \end{tabular}
+  \end{table}\<close>
+abbreviation "kp8x8ul \<equiv> the (to_path 
+  [[38,41,36,27,32,43,20,25],
+  [35,64,39,42,21,26,29,44],
+  [40,37,6,33,28,31,24,19],
+  [5,34,63,14,7,22,45,30],
+  [62,13,4,9,58,49,18,23],
+  [3,10,61,52,15,8,57,46],
+  [12,53,2,59,48,55,50,17],
+  [1,60,11,54,51,16,47,56]])" 
 
 lemma kp_8x8_ul: "knights_path b8x8 kp8x8ul"
-  apply (simp only: knights_path_exec_simp) sorry
+  by (simp only: knights_path_exec_simp) eval
 
 lemma kp_8x8_ul_hd: "hd kp8x8ul = (1,1)" by eval
 
