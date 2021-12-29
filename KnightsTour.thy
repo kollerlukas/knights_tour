@@ -4,27 +4,27 @@ theory KnightsTour
   imports Main
 begin
 
-text \<open>This is a formalization of @{cite "cull_decurtins_1987"}. In @{cite "cull_decurtins_1987"} the 
-existence of Knight's paths and Knight's circuits are proved for arbitrary \<open>n\<times>m\<close>-boards with 
+text \<open>This is a formalization of @{cite "cull_decurtins_1987"}. In @{cite "cull_decurtins_1987"} 
+the existence of Knight's paths and Knight's circuits are proved for arbitrary \<open>n\<times>m\<close>-boards with 
 \<open>min n m \<ge> 5\<close>.
 
 A Knight's path is an instance of the Hamiltonian Path Problem. A Knight's path is a sequence of 
-squares on a chessboard s.t. every step in sequence is possible for a Knight. A Knight is a chess 
-figure that is only able to move two squares vertically and one square horizontally or two squares 
-horizontally and one square vertically.
+squares on a chessboard s.t. every step in sequence is a valid move for a Knight. A Knight is a 
+chess figure that is only able to move two squares vertically and one square horizontally or two 
+squares horizontally and one square vertically.
 A Knight's circuit is a Knight's path, where additionally the Knight can move from the last square 
 to the first square of the path, forming a loop.
 
 The main idea for the proof of the existence of a Knight's path is to inductivly construct paths 
-from a few pre-computed path for small boards, e.g. \<open>5\<times>5\<close>, \<open>5\<times>6\<close>, ..., \<open>8\<times>9\<close>. The paths for small 
-boards are transformed(i.e. transpose, mirror, translate) and combined to create paths for larger 
+from a few pre-computed paths for small boards, e.g. \<open>5\<times>5\<close>, \<open>5\<times>6\<close>, ..., \<open>8\<times>9\<close>. The paths for small 
+boards are transformed (i.e. transpose, mirror, translate) and combined to create paths for larger 
 boards.
 
-While formalizing the proofs I noticed two mistakes in the original proof by 
-@{cite "cull_decurtins_1987"}, the pre-computed boards for \<open>6\<times>6\<close> and \<open>8\<times>8\<close> from Figure 2 and 
-Figure 5 in @{cite "cull_decurtins_1987"} are false. I.e. in the \<open>6\<times>6\<close> board the Knight cannot 
-step from square 26 to square 27; in the \<open>8\<times>8\<close> board the Knight cannot step from square 27 to 
-square 28.\<close>
+While formalizing the proofs I have noticed two mistakes in the original proof by Cull and 
+De Curtins: (i) the pre-computed path for the \<open>6\<times>6\<close> board that ends in the upper-left (in Figure 2)
+and (ii) the pre-computed path for the \<open>8\<times>8\<close> board that ends in the upper-left (in Figure 5) are 
+false. I.e. on the \<open>6\<times>6\<close> board the Knight cannot step from square 26 to square 27; in the \<open>8\<times>8\<close> 
+board the Knight cannot step from square 27 to square 28.\<close>
 
 section \<open>Definitions\<close>
 
@@ -40,14 +40,15 @@ text \<open>A path is a sequence of steps on a board. A path is represented by t
 squares on the board. Each square on the \<open>(n\<times>m)\<close>-board is identified by its coordinates \<open>(i,j)\<close>.\<close>
 type_synonym path = "square list"
 
-text \<open>Predicate that characterizes a valid step. 
-The knight at position \<open>(i,j)\<close> can only move to \<open>(i\<sigma>1,j\<sigma>2)\<close> and \<open>(i\<sigma>2,j\<sigma>1)\<close> for \<open>\<sigma> \<in> {+,-}\<close>.\<close>
+text \<open>Predicate that characterizes a valid step. A Knight can only move two squares vertically 
+and one square horizontally or two squares horizontally and one square vertically. Therefore, a 
+knight at position \<open>(i,j)\<close> can only move to \<open>(i\<plusminus>1,j\<plusminus>2)\<close> or \<open>(i\<plusminus>2,j\<plusminus>1)\<close>.\<close>
 definition valid_step :: "square \<Rightarrow> square \<Rightarrow> bool" where
   "valid_step s\<^sub>i s\<^sub>j \<equiv> (case s\<^sub>i of (i,j) \<Rightarrow> s\<^sub>j \<in> {(i+1,j+2),(i-1,j+2),(i+1,j-2),(i-1,j-2),
                                                 (i+2,j+1),(i-2,j+1),(i+2,j-1),(i-2,j-1)})"
 
-text \<open>Inductive predicate that characterizes a Knight's path. The knight can only make a valid 
-step to a position on the board that has not been visited yet.\<close>
+text \<open>Now we define an inductive predicate that characterizes a Knight's path. The knight can 
+only make a valid step to a position on the board that has not been visited yet.\<close>
 inductive knights_path :: "board \<Rightarrow> path \<Rightarrow> bool" where
   "knights_path {s\<^sub>i} [s\<^sub>i]"
 | "s\<^sub>i \<notin> b \<Longrightarrow> valid_step s\<^sub>i s\<^sub>j \<Longrightarrow> knights_path b (s\<^sub>j#ps) \<Longrightarrow> knights_path (b \<union> {s\<^sub>i}) (s\<^sub>i#s\<^sub>j#ps)"
@@ -2055,28 +2056,50 @@ lemma kc_6x5_non_nil: "kc6x5 \<noteq> []" by eval
 
 abbreviation "b6x6 \<equiv> board 6 6"
 
-text \<open>There is a typo in the table printed in the paper: \color{red}{27} \color{red}{35} are wrong.\<close>
+text \<open>The path given for the \<open>6\<times>6\<close>-board that ends in the upper-left is wrong. The Knight cannot 
+move from square 26 to square 27.\<close>
 text \<open>
   \begin{table}[]
     \begin{tabular}{llllll}
       14 & 23 &  6 & 28 & 12 & 21 \\
-       7 & 36 & 13 & 22 &  5 & 27 \\
+       7 & 36 & 13 & 22 &  5 & \color{red}{27} \\
       24 & 15 & 29 & 35 & 20 & 11 \\
-      30 &  8 & 17 & 26 & 34 &  4 \\
+      30 &  8 & 17 & \color{red}{26} & 34 &  4 \\
       16 & 25 &  2 & 32 & 10 & 19 \\
        1 & 31 &  9 & 18 &  3 & 33
     \end{tabular}
   \end{table}\<close>
-abbreviation "kp6x6ul \<equiv> the (to_path 
+abbreviation "kp6x6ul_wrong \<equiv> the (to_path 
   [[14,23,6,28,12,21],
   [7,36,13,22,5,27],
   [24,15,29,35,20,11],
   [30,8,17,26,34,4],
   [16,25,2,32,10,19],
   [1,31,9,18,3,33]])"
+
+value "path_checker (board_exec 6 6) kp6x6ul_wrong"
+
+text \<open>I have computed a correct path for the \<open>6\<times>6\<close>-board that ends in the upper-left.\<close>
+text \<open>
+  \begin{table}[]
+    \begin{tabular}{llllll}
+       8 & 25 & 10 & 21 &  6 & 23 \\
+      11 & 36 &  7 & 24 & 33 & 20 \\
+      26 &  9 & 34 &  3 & 22 &  5 \\
+      35 & 12 & 15 & 30 & 19 & 32 \\
+      14 & 27 &  2 & 17 &  4 & 29 \\
+       1 & 16 & 13 & 28 & 31 & 18
+    \end{tabular}
+  \end{table}\<close>
+abbreviation "kp6x6ul \<equiv> the (to_path 
+  [[8,25,10,21,6,23],
+  [11,36,7,24,33,20],
+  [26,9,34,3,22,5],
+  [35,12,15,30,19,32],
+  [14,27,2,17,4,29],
+  [1,16,13,28,31,18]])"
 lemma kp_6x6_ul: "knights_path b6x6 kp6x6ul"
-  apply (simp only: knights_path_exec_simp) 
-  sorry (* TODO: find correct path for 6x6-board *)
+  by (simp only: knights_path_exec_simp) eval
 
 lemma kp_6x6_ul_hd: "hd kp6x6ul = (1,1)" by eval
 
@@ -2465,29 +2488,8 @@ lemma kp_8x6_ul_last: "last kp8x6ul = (7,2)" by eval
 
 lemma kp_8x6_ul_non_nil: "kp8x6ul \<noteq> []" by eval
 
-(*text \<open>
-  \begin{table}[]
-    \begin{tabular}{llllll}
-      42 & 21 & 26 &  5 & 38 & 13 \\
-      25 &  4 & 41 & 12 & 27 &  6 \\
-      20 & 43 & 22 & 37 & 14 & 39 \\
-       3 & 24 & 11 & 40 &  7 & 28 \\
-      44 & 19 & 46 & 23 & 36 & 15 \\
-      47 &  2 & 33 & 10 & 29 &  8 \\
-      18 & 45 & 48 & 31 & 16 & 35 \\
-       1 & 32 & 17 & 34 &  9 & 30
-    \end{tabular}
-  \end{table}\<close>
-abbreviation "kc8x6 \<equiv> the (to_path 
-  [[42,21,26,5,38,13],
-  [25,4,41,12,27,6],
-  [20,43,22,37,14,39],
-  [3,24,11,40,7,28],
-  [44,19,46,23,36,15],
-  [47,2,33,10,29,8],
-  [18,45,48,31,16,35],
-  [1,32,17,34,9,30]])"*)
-text \<open>Reversed circuit s.t. the circuit steps from \<open>(2,5)\<close> to \<open>(4,6)\<close> and not the other way around.\<close>
+text \<open>I have reversed circuit s.t. the circuit steps from \<open>(2,5)\<close> to \<open>(4,6)\<close> and not the other 
+way around. This makes the proofs easier.\<close>
 text \<open>
   \begin{table}[]
     \begin{tabular}{llllll}
@@ -2557,29 +2559,8 @@ lemma kp_8x7_ul_last: "last kp8x7ul = (7,2)" by eval
 
 lemma kp_8x7_ul_non_nil: "kp8x7ul \<noteq> []" by eval
 
-(*text \<open>
-  \begin{table}[]
-    \begin{tabular}{llllll}
-      22 & 27 & 40 &  5 & 38 & 29 & 14 \\
-      41 &  4 & 23 & 28 & 13 &  6 & 37 \\
-      26 & 21 & 12 & 39 & 50 & 15 & 30 \\
-       3 & 42 & 51 & 24 & 31 & 36 &  7 \\
-      20 & 25 & 32 & 11 & 52 & 49 & 16 \\
-      55 &  2 & 43 & 46 & 33 &  8 & 35 \\
-      44 & 19 & 56 & 53 & 10 & 17 & 48 \\
-       1 & 54 & 45 & 18 & 47 & 34 &  9
-    \end{tabular}
-  \end{table}\<close>
-abbreviation "kc8x7 \<equiv> the (to_path 
-  [[22,27,40,5,38,29,14],
-  [41,4,23,28,13,6,37],
-  [26,21,12,39,50,15,30],
-  [3,42,51,24,31,36,7],
-  [20,25,32,11,52,49,16],
-  [55,2,43,46,33,8,35],
-  [44,19,56,53,10,17,48],
-  [1,54,45,18,47,34,9]])"*)
-text \<open>Reversed circuit s.t. the circuit steps from \<open>(2,6)\<close> to \<open>(4,7)\<close> and not the other way around.\<close>
+text \<open>I have reversed circuit s.t. the circuit steps from \<open>(2,6)\<close> to \<open>(4,7)\<close> and not the other 
+way around. This makes the proofs easier.\<close>
 text \<open>
   \begin{table}[]
     \begin{tabular}{lllllll}
@@ -2618,6 +2599,8 @@ qed
 
 abbreviation "b8x8 \<equiv> board 8 8"
 
+text \<open>The path given for the \<open>8\<times>8\<close>-board that ends in the upper-left is wrong. The Knight cannot 
+move from square 27 to square 28.\<close>
 text \<open>
   \begin{table}[]
     \begin{tabular}{llllllll}
@@ -2640,6 +2623,9 @@ abbreviation "kp8x8ul \<equiv> the (to_path
   [34,62,47,60,51,56,41,18],
   [14,45,2,32,16,43,4,30],
   [1,33,15,44,3,31,17,42]])" (* 27 \<rightarrow> 28 *)
+
+value "path_checker (board_exec 8 8) kp8x8ul"
+
 lemma kp_8x8_ul: "knights_path b8x8 kp8x8ul"
   apply (simp only: knights_path_exec_simp) sorry
 
