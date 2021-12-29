@@ -15,6 +15,8 @@ from a few pre-computed paths for small boards, e.g. `5×5`, `5×6`, ..., `8×9`
 boards are transformed (i.e. transpose, mirror, translate) and combined to create paths for larger 
 boards.
 
+# Corrections
+
 While formalizing the proofs I have noticed two mistakes in the original proof by Cull and 
 De Curtins: (i) the pre-computed path for the `6×6` board that ends in the upper-left (in Figure 2) 
 and (ii) the pre-computed path for the `8×8` board that ends in the upper-left (in Figure 5) are 
