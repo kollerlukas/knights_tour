@@ -24,7 +24,7 @@ false. I.e. on the `6×6` board the Knight cannot step from square 26 to square 
 board the Knight cannot step from square 27 to square 28.
 
 I have computed a correct paths for the `6×6` and `8×8` board that start in the lower left and end
-in the upper-left.
+in the upper-left. To compute the paths I used the `compute_paths.py`.
 
 | 8  | 25 | 10 | 21 | 6  | 23 |
 |----|----|----|----|----|----|
