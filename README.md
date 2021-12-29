@@ -1,7 +1,7 @@
 # Isabelle/HOL Formalization of "Knight's Tour Revisited" (Cull and De Curtins, 1978)
 
 In (Cull and De Curtins, 1978) the existence of Knight's paths and Knight's circuits are proved 
-for arbitrary `n×m`-boards with `min n m ≥ 5`.
+for arbitrary `n×m`-boards with `min n m ≥ 5` and for the Knight's circuit `even n*m`.
 
 A Knight's path is an instance of the Hamiltonian Path Problem. A Knight's path is a sequence of 
 squares on a chessboard s.t. every step in sequence is a valid move for a Knight. A Knight is a 
