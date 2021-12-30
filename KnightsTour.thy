@@ -3051,71 +3051,53 @@ abbreviation "kp9x9ul \<equiv> the (to_path
 lemma kp_9x9_ul: "knights_path b9x9 kp9x9ul"
   by (simp only: knights_path_exec_simp) eval 
 
-text \<open>This is a sub-proof used in Lemma 4 in @{cite "cull_decurtins_1987"}. I moved this sub-proof 
-out to a separate lemma.\<close>
-lemma knights_circuit_exists_even_n_kp_ul_ur:
-  assumes "min n m \<ge> 5" "even n"
-          "n \<ge> 10 \<Longrightarrow>
-  \<exists>ps. knights_path (board (n-5) m) ps \<and> hd ps = (int (n-5),1) \<and> last ps = (int (n-5)-1,int m-1)"
+text \<open>The following lemma is a sub-proof used in Lemma 4 in @{cite "cull_decurtins_1987"}. 
+I moved the sub-proof out to a separate lemma.\<close>
+lemma knights_circuit_exists_even_n_gr10:
+  assumes "even n" "n \<ge> 10" "m \<ge> 5"
+          "\<exists>ps. knights_path (board (n-5) m) ps \<and> hd ps = (int (n-5),1) 
+            \<and> last ps = (int (n-5)-1,int m-1)"
   shows "\<exists>ps. knights_circuit (board m n) ps"
   using assms
 proof -
-  have "n = 6 \<or> n = 8 \<or> n \<ge> 10" 
-    using assms by presburger
-  then show ?thesis
-  proof (elim disjE) 
-    assume "n = 6"
-    then obtain ps where "knights_circuit (board n m) ps"
-      using assms knights_path_6xm_exists[of m] by auto
-    then show ?thesis 
-      using transpose_knights_circuit by auto
-  next
-    assume "n = 8"
-    then obtain ps where "knights_circuit (board n m) ps"
-      using assms knights_path_8xm_exists[of m] by auto
-    then show ?thesis 
-      using transpose_knights_circuit by auto
-  next
-    let ?b\<^sub>2="board (n-5) m"
-    assume "n \<ge> 10"
-    then obtain ps\<^sub>2 where ps\<^sub>2_prems: "knights_path ?b\<^sub>2 ps\<^sub>2" "hd ps\<^sub>2 = (int (n-5),1)" 
-        "last ps\<^sub>2 = (int (n-5)-1,int m-1)"
-      using assms by auto
-    let ?ps\<^sub>2_m2="mirror2 ps\<^sub>2"
-    have ps\<^sub>2_m2_prems: "knights_path ?b\<^sub>2 ?ps\<^sub>2_m2" "hd ?ps\<^sub>2_m2 = (int (n-5),int m)" 
-        "last ?ps\<^sub>2_m2 = (int (n-5)-1,2)"
-      using ps\<^sub>2_prems mirror2_knights_path hd_mirror2 last_mirror2 by auto
+  let ?b\<^sub>2="board (n-5) m"
+  assume "n \<ge> 10"
+  then obtain ps\<^sub>2 where ps\<^sub>2_prems: "knights_path ?b\<^sub>2 ps\<^sub>2" "hd ps\<^sub>2 = (int (n-5),1)" 
+      "last ps\<^sub>2 = (int (n-5)-1,int m-1)"
+    using assms by auto
+  let ?ps\<^sub>2_m2="mirror2 ps\<^sub>2"
+  have ps\<^sub>2_m2_prems: "knights_path ?b\<^sub>2 ?ps\<^sub>2_m2" "hd ?ps\<^sub>2_m2 = (int (n-5),int m)" 
+      "last ?ps\<^sub>2_m2 = (int (n-5)-1,2)"
+    using ps\<^sub>2_prems mirror2_knights_path hd_mirror2 last_mirror2 by auto
 
-    obtain ps\<^sub>1 where ps\<^sub>1_prems: "knights_path (board 5 m) ps\<^sub>1" "hd ps\<^sub>1 = (1,1)" 
-        "last ps\<^sub>1 = (2,int m-1)"
-      using \<open>min n m \<ge> 5\<close> knights_path_5xm_exists by auto
-    let ?ps\<^sub>1'="trans_path (int (n-5),0) ps\<^sub>1"
-    let ?b\<^sub>1'="trans_board (int (n-5),0) (board 5 m)"
-    have ps\<^sub>1'_prems: "knights_path ?b\<^sub>1' ?ps\<^sub>1'" "hd ?ps\<^sub>1' = (int (n-5)+1,1)" 
-        "last ?ps\<^sub>1' = (int (n-5)+2,int m-1)"
-      using ps\<^sub>1_prems trans_knights_path knights_path_non_nil hd_trans_path last_trans_path by auto
+  obtain ps\<^sub>1 where ps\<^sub>1_prems: "knights_path (board 5 m) ps\<^sub>1" "hd ps\<^sub>1 = (1,1)""last ps\<^sub>1 = (2,int m-1)"
+    using assms knights_path_5xm_exists by auto
+  let ?ps\<^sub>1'="trans_path (int (n-5),0) ps\<^sub>1"
+  let ?b\<^sub>1'="trans_board (int (n-5),0) (board 5 m)"
+  have ps\<^sub>1'_prems: "knights_path ?b\<^sub>1' ?ps\<^sub>1'" "hd ?ps\<^sub>1' = (int (n-5)+1,1)" 
+      "last ?ps\<^sub>1' = (int (n-5)+2,int m-1)"
+    using ps\<^sub>1_prems trans_knights_path knights_path_non_nil hd_trans_path last_trans_path by auto
 
-    let ?ps="?ps\<^sub>1'@?ps\<^sub>2_m2"
-    let ?psT="transpose ?ps"
+  let ?ps="?ps\<^sub>1'@?ps\<^sub>2_m2"
+  let ?psT="transpose ?ps"
 
-    have "n-5 \<ge> 5" using \<open>n \<ge> 10\<close> by auto
-    have inter: "?b\<^sub>1' \<inter> ?b\<^sub>2 = {}"
-      unfolding trans_board_def board_def using \<open>n-5 \<ge> 5\<close> by auto
-    have union: "?b\<^sub>1' \<union> ?b\<^sub>2 = board n m"
-      using \<open>n-5 \<ge> 5\<close> board_concatT[of "n-5" m 5] by auto
+  have "n-5 \<ge> 5" using \<open>n \<ge> 10\<close> by auto
+  have inter: "?b\<^sub>1' \<inter> ?b\<^sub>2 = {}"
+    unfolding trans_board_def board_def using \<open>n-5 \<ge> 5\<close> by auto
+  have union: "?b\<^sub>1' \<union> ?b\<^sub>2 = board n m"
+    using \<open>n-5 \<ge> 5\<close> board_concatT[of "n-5" m 5] by auto
 
-    have vs: "valid_step (last ?ps\<^sub>1') (hd ?ps\<^sub>2_m2)" and "valid_step (last ?ps\<^sub>2_m2) (hd ?ps\<^sub>1')"
-      unfolding valid_step_def using ps\<^sub>1'_prems ps\<^sub>2_m2_prems by auto
-    then have vs_c: "valid_step (last ?ps) (hd ?ps)"
-      using ps\<^sub>1'_prems ps\<^sub>2_m2_prems knights_path_non_nil by auto
+  have vs: "valid_step (last ?ps\<^sub>1') (hd ?ps\<^sub>2_m2)" and "valid_step (last ?ps\<^sub>2_m2) (hd ?ps\<^sub>1')"
+    unfolding valid_step_def using ps\<^sub>1'_prems ps\<^sub>2_m2_prems by auto
+  then have vs_c: "valid_step (last ?ps) (hd ?ps)"
+    using ps\<^sub>1'_prems ps\<^sub>2_m2_prems knights_path_non_nil by auto
 
-    have "knights_path (board n m) ?ps"
-      using ps\<^sub>1'_prems ps\<^sub>2_m2_prems inter vs union knights_path_append[of ?b\<^sub>1' ?ps\<^sub>1' ?b\<^sub>2 ?ps\<^sub>2_m2] 
-      by auto
-    then have "knights_circuit (board n m) ?ps"
-      unfolding knights_circuit_def using vs_c by auto
-    then show ?thesis using transpose_knights_circuit by auto
-  qed
+  have "knights_path (board n m) ?ps"
+    using ps\<^sub>1'_prems ps\<^sub>2_m2_prems inter vs union knights_path_append[of ?b\<^sub>1' ?ps\<^sub>1' ?b\<^sub>2 ?ps\<^sub>2_m2] 
+    by auto
+  then have "knights_circuit (board n m) ?ps"
+    unfolding knights_circuit_def using vs_c by auto
+  then show ?thesis using transpose_knights_circuit by auto
 qed
 
 text \<open>For every \<open>n\<times>m\<close>-board with \<open>min n m \<ge> 5\<close> and odd \<open>n\<close> there exists a Knight's path that 
@@ -3168,8 +3150,29 @@ proof -
         let ?b\<^sub>2="board m (n-5)"
         assume "n-5 \<ge> 5"
         then have "\<exists>ps. knights_circuit ?b\<^sub>2 ps"
-          using less less.IH[of "n-10+m" "n-10" m] 
-                knights_circuit_exists_even_n_kp_ul_ur[of "n-5" m] by auto
+        proof -
+          have "n-5 = 6 \<or> n-5 = 8 \<or> n-5 \<ge> 10" 
+            using \<open>n-5 \<ge> 5\<close> less by presburger
+          then show ?thesis
+          proof (elim disjE)
+            assume "n-5 = 6"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_6xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 = 8"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_8xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 \<ge> 10"
+            then show ?thesis 
+              using less less.IH[of "n-10+m" "n-10" m]
+                    knights_circuit_exists_even_n_gr10[of "n-5" m] by auto
+          qed
+        qed
         then obtain ps\<^sub>2 where "knights_circuit ?b\<^sub>2 ps\<^sub>2" "hd ps\<^sub>2 = (1,1)" "last ps\<^sub>2 = (3,2)"
           using \<open>n-5 \<ge> 5\<close> rotate_knights_circuit[of m "n-5"] by auto
         then have rev_ps\<^sub>2_prems: "knights_path ?b\<^sub>2 (rev ps\<^sub>2)" "valid_step (last ps\<^sub>2) (hd ps\<^sub>2)"
@@ -3236,8 +3239,29 @@ proof -
         let ?b\<^sub>2T="board (n-5) m"
         assume "n-5 \<ge> 5"
         then have "\<exists>ps. knights_circuit ?b\<^sub>2 ps"
-          using less less.IH[of "n-10+m" "n-10" m] 
-                knights_circuit_exists_even_n_kp_ul_ur[of "n-5" m] by auto
+        proof -
+          have "n-5 = 6 \<or> n-5 = 8 \<or> n-5 \<ge> 10" 
+            using \<open>n-5 \<ge> 5\<close> less by presburger
+          then show ?thesis
+          proof (elim disjE)
+            assume "n-5 = 6"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_6xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 = 8"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_8xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 \<ge> 10"
+            then show ?thesis 
+              using less less.IH[of "n-10+m" "n-10" m]
+                    knights_circuit_exists_even_n_gr10[of "n-5" m] by auto
+          qed
+        qed
         then obtain ps\<^sub>2 where ps\<^sub>2_prems: "knights_circuit ?b\<^sub>2 ps\<^sub>2" "hd ps\<^sub>2 = (1,1)" 
             "last ps\<^sub>2 = (3,2)"
           using \<open>n-5 \<ge> 5\<close> rotate_knights_circuit[of m "n-5"] by auto
@@ -3306,8 +3330,29 @@ proof -
         let ?b\<^sub>2T="board (n-5) m"
         assume "n-5 \<ge> 5"
         then have "\<exists>ps. knights_circuit ?b\<^sub>2 ps"
-          using \<open>n-5 \<ge> 5\<close> less less.IH[of "n-10+m" "n-10" m] 
-                knights_circuit_exists_even_n_kp_ul_ur[of "n-5" m] by auto
+        proof -
+          have "n-5 = 6 \<or> n-5 = 8 \<or> n-5 \<ge> 10" 
+            using \<open>n-5 \<ge> 5\<close> less by presburger
+          then show ?thesis
+          proof (elim disjE)
+            assume "n-5 = 6"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_6xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 = 8"
+            then obtain ps where "knights_circuit (board (n-5) m) ps"
+              using knights_path_8xm_exists[of m] by auto
+            then show ?thesis 
+              using transpose_knights_circuit by auto
+          next
+            assume "n-5 \<ge> 10"
+            then show ?thesis 
+              using less less.IH[of "n-10+m" "n-10" m]
+                    knights_circuit_exists_even_n_gr10[of "n-5" m] by auto
+          qed
+        qed
         then obtain ps\<^sub>2 where ps\<^sub>2_prems: "knights_circuit ?b\<^sub>2 ps\<^sub>2" "hd ps\<^sub>2 = (1,1)" 
             "last ps\<^sub>2 = (3,2)"
           using \<open>n-5 \<ge> 5\<close> rotate_knights_circuit[of m "n-5"] by auto
@@ -3468,5 +3513,7 @@ proof -
       using assms knights_circuit_exists by (auto simp: knights_circuit_def)
   qed
 qed
+
+text \<open>THE END\<close>
 
 end
