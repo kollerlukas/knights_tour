@@ -3,4 +3,5 @@ session knights_tour = HOL +
   theories
     KnightsTour
   document_files
+    "root.bib"
     "root.tex"

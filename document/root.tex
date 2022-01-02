@@ -23,10 +23,11 @@
   %for \<onequarter>, \<onehalf>, \<threequarters>, \<degree>, \<cent>,
   %\<currency>
 
+\usepackage{amsmath}
+\usepackage{float}
+
 % this should be the last package used
 \usepackage{pdfsetup}
-
-\usepackage{float}
 
 % urls in roman style, theory text in math-similar italics
 \urlstyle{rm}
@@ -41,6 +42,30 @@
 \author{Lukas Koller}
 \maketitle
 
+\begin{abstract}
+This is a formalization of \cite{cull_decurtins_1987}. In \cite{cull_decurtins_1987}
+the existence of Knight's paths and Knight's circuits are proved for arbitrary $n\times m$-boards with 
+$\operatorname{min}(n,m) \geq 5$ and for the Knight's circuit $n\cdot m$ is even.
+
+A Knight's path is a sequence of squares on a chessboard s.t. every step in sequence is a valid move for 
+a Knight. A Knight is a chess figure that is only able to move two squares vertically and one square 
+horizontally or two squares horizontally and one square vertically. Finding a Knight's path is an 
+instance of the Hamiltonian Path Problem. A Knight's circuit is a Knight's path, where additionally 
+the Knight can move from the last square to the first square of the path, forming a loop.
+
+The main idea for the proof of the existence of a Knight's path on a $n\times m$-board, is to inductivly 
+construct a Knight's paths for the $n\times m$-board from a few pre-computed Knight's paths for small 
+boards, i.e. $5\times 5$, $5\times 6$, ..., $8\times 9$. The paths for small boards are transformed 
+(i.e. transpose, mirror, translate) and concatenated to create paths for larger boards.
+
+While formalizing the proofs I have noticed two mistakes in the original proof in \cite{cull_decurtins_1987}: 
+(i) the pre-computed path for the $6\times 6$-board that ends in the upper-left (in Figure 2) and (ii) 
+the pre-computed path for the $8\times 8$-board that ends in the upper-left (in Figure 5) are incorrect. 
+I.e. on the $6\times 6$-board the Knight cannot step from square 26 to square 27; in the $8\times 8$-board 
+the Knight cannot step from square 27 to square 28. In this formalization I have replaced the two incorrect 
+paths with correct paths.
+\end{abstract}
+
 \tableofcontents
 
 % sane default for proof documents
@@ -51,7 +76,7 @@
 
 % optional bibliography
 \bibliographystyle{abbrv}
-\bibliography{refs}
+\bibliography{root}
 
 \end{document}
 

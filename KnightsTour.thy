@@ -4,28 +4,6 @@ theory KnightsTour
   imports Main
 begin
 
-text \<open>This is a formalization of @{cite "cull_decurtins_1987"}. In @{cite "cull_decurtins_1987"} 
-the existence of Knight's paths and Knight's circuits are proved for arbitrary \<open>n\<times>m\<close>-boards with 
-\<open>min n m \<ge> 5\<close> and for the Knight's circuit \<open>even n*m\<close>.
-
-A Knight's path is an instance of the Hamiltonian Path Problem. A Knight's path is a sequence of 
-squares on a chessboard s.t. every step in sequence is a valid move for a Knight. A Knight is a 
-chess figure that is only able to move two squares vertically and one square horizontally or two 
-squares horizontally and one square vertically.
-A Knight's circuit is a Knight's path, where additionally the Knight can move from the last square 
-to the first square of the path, forming a loop.
-
-The main idea for the proof of the existence of a Knight's path is to inductivly construct paths 
-from a few pre-computed paths for small boards, e.g. \<open>5\<times>5\<close>, \<open>5\<times>6\<close>, ..., \<open>8\<times>9\<close>. The paths for small 
-boards are transformed (i.e. transpose, mirror, translate) and combined to create paths for larger 
-boards.
-
-While formalizing the proofs I have noticed two mistakes in the original proof by Cull and 
-De Curtins: (i) the pre-computed path for the \<open>6\<times>6\<close> board that ends in the upper-left (in Figure 2)
-and (ii) the pre-computed path for the \<open>8\<times>8\<close> board that ends in the upper-left (in Figure 5) are 
-false. I.e. on the \<open>6\<times>6\<close> board the Knight cannot step from square 26 to square 27; in the \<open>8\<times>8\<close> 
-board the Knight cannot step from square 27 to square 28.\<close>
-
 section \<open>Definitions\<close>
 
 type_synonym square = "int \<times> int"
