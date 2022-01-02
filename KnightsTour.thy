@@ -6,7 +6,7 @@ begin
 
 text \<open>This is a formalization of @{cite "cull_decurtins_1987"}. In @{cite "cull_decurtins_1987"} 
 the existence of Knight's paths and Knight's circuits are proved for arbitrary \<open>n\<times>m\<close>-boards with 
-\<open>min n m \<ge> 5\<close>.
+\<open>min n m \<ge> 5\<close> and for the Knight's circuit \<open>even n*m\<close>.
 
 A Knight's path is an instance of the Hamiltonian Path Problem. A Knight's path is a sequence of 
 squares on a chessboard s.t. every step in sequence is a valid move for a Knight. A Knight is a 
@@ -40,15 +40,16 @@ text \<open>A path is a sequence of steps on a board. A path is represented by t
 squares on the board. Each square on the \<open>(n\<times>m)\<close>-board is identified by its coordinates \<open>(i,j)\<close>.\<close>
 type_synonym path = "square list"
 
-text \<open>Predicate that characterizes a valid step. A Knight can only move two squares vertically 
-and one square horizontally or two squares horizontally and one square vertically. Therefore, a 
-knight at position \<open>(i,j)\<close> can only move to \<open>(i\<plusminus>1,j\<plusminus>2)\<close> or \<open>(i\<plusminus>2,j\<plusminus>1)\<close>.\<close>
+text \<open>A Knight can only move two squares vertically and one square horizontally or two squares 
+horizontally and one square vertically. Thus, a knight at position \<open>(i,j)\<close> can only move 
+to \<open>(i\<plusminus>1,j\<plusminus>2)\<close> or \<open>(i\<plusminus>2,j\<plusminus>1)\<close>.\<close>
 definition valid_step :: "square \<Rightarrow> square \<Rightarrow> bool" where
   "valid_step s\<^sub>i s\<^sub>j \<equiv> (case s\<^sub>i of (i,j) \<Rightarrow> s\<^sub>j \<in> {(i+1,j+2),(i-1,j+2),(i+1,j-2),(i-1,j-2),
                                                 (i+2,j+1),(i-2,j+1),(i+2,j-1),(i-2,j-1)})"
 
-text \<open>Now we define an inductive predicate that characterizes a Knight's path. The knight can 
-only make a valid step to a position on the board that has not been visited yet.\<close>
+text \<open>Now we define an inductive predicate that characterizes a Knight's path. A square \<open>s\<^sub>i\<close> can be
+pre-pended to a current Knight's path \<open>s\<^sub>j#ps\<close> if (i) there is a valid step from the square \<open>s\<^sub>i\<close> to 
+the first square \<open>s\<^sub>j\<close> of the current path and (ii) the square \<open>s\<^sub>i\<close> has not been visited yet.\<close>
 inductive knights_path :: "board \<Rightarrow> path \<Rightarrow> bool" where
   "knights_path {s\<^sub>i} [s\<^sub>i]"
 | "s\<^sub>i \<notin> b \<Longrightarrow> valid_step s\<^sub>i s\<^sub>j \<Longrightarrow> knights_path b (s\<^sub>j#ps) \<Longrightarrow> knights_path (b \<union> {s\<^sub>i}) (s\<^sub>i#s\<^sub>j#ps)"
@@ -162,7 +163,7 @@ corollary knights_circuit_exec_simp:
   "knights_circuit (board n m) ps \<longleftrightarrow> circuit_checker (board_exec n m) ps"
   using board_exec_correct circuit_checker_correct[symmetric] by simp
 
-section \<open>Proof for some Properties of @{const knights_path} and @{const knights_circuit}\<close>
+section \<open>Basic Properties of @{const knights_path} and @{const knights_circuit}\<close>
 
 lemma board_leq_subset: "n\<^sub>1 \<le> n\<^sub>2 \<and> m\<^sub>1 \<le> m\<^sub>2 \<Longrightarrow> board n\<^sub>1 m\<^sub>1 \<subseteq> board n\<^sub>2 m\<^sub>2"
   unfolding board_def by auto
@@ -400,7 +401,7 @@ proof (induction rule: knights_path.induct)
   then show ?case by auto
 qed (auto intro: knights_path.intros)
 
-text \<open>Reverse Knight's path.\<close>
+text \<open>Reverse a Knight's circuit.\<close>
 corollary knights_circuit_rev:
   assumes "knights_circuit b ps"
   shows "knights_circuit b (rev ps)"
@@ -591,9 +592,9 @@ proof -
   qed
 qed
 
-section \<open>Transpose and Mirror Paths and Boards\<close>
+section \<open>Transposing Paths and Boards\<close>
 
-subsection \<open>Transpose Paths and Boards\<close>
+subsection \<open>Implementation of Path and Board Transposition\<close>
 
 definition "transpose_square s\<^sub>i = (case s\<^sub>i of (i,j) \<Rightarrow> (j,i))"
 
@@ -603,6 +604,8 @@ fun transpose :: "path \<Rightarrow> path" where
 
 definition transpose_board :: "board \<Rightarrow> board" where
   "transpose_board b \<equiv> {(j,i) |i j. (i,j) \<in> b}"
+
+subsection \<open>Correctness of Path and Board Transposition\<close>
 
 lemma transpose2: "transpose_square (transpose_square s\<^sub>i) = s\<^sub>i"
   unfolding transpose_square_def by (auto split: prod.splits)
@@ -719,7 +722,9 @@ proof -
   then show ?thesis using kp_t by (auto simp: knights_circuit_def)
 qed
 
-subsection \<open>Mirror Paths and Boards\<close>
+section \<open>Mirroring Paths and Boards\<close>
+
+subsection \<open>Implementation of Path and Board Mirroring\<close>
 
 abbreviation "min1 ps \<equiv> Min ((fst) ` set ps)"
 abbreviation "max1 ps \<equiv> Max ((fst) ` set ps)"
@@ -749,6 +754,8 @@ definition "mirror2 ps = mirror2_aux (max2 ps + min2 ps) ps"
 
 definition mirror2_board :: "int \<Rightarrow> board \<Rightarrow> board" where
   "mirror2_board m b \<equiv> {mirror2_square m s\<^sub>i |s\<^sub>i. s\<^sub>i \<in> b}"
+
+subsection \<open>Correctness of Path and Board Mirroring\<close>
 
 lemma mirror1_board_id: "mirror1_board (int n+1) (board n m) = board n m" (is "_ = ?b")
 proof
@@ -1110,6 +1117,8 @@ proof -
   then show ?thesis unfolding mirror2_def by auto
 qed
 
+subsection \<open>Rotate Knight's Paths\<close>
+
 text \<open>Transposing (\<open>transpose\<close>) and mirroring (along first axis \<open>mirror1\<close>) a Knight's path 
 preserves the Knight's path's property. Tranpose+Mirror1 equals a 90deg-clockwise turn.\<close>
 corollary rot90_knights_path:
@@ -1139,7 +1148,7 @@ proof -
   then show ?thesis using last_mirror1 by auto
 qed
 
-section \<open>Path and Board Translation\<close>
+section \<open>Translating Paths and Boards\<close>
 
 text \<open>When constructing knight's paths for larger boards multiple knight's paths for smaller boards
 are concatenated. To concatenate paths the the coordinates in the path need to be translated. 
@@ -1156,7 +1165,7 @@ text \<open>Translate the coordinates of a board by \<open>(k\<^sub>1,k\<^sub>2)
 definition trans_board :: "int \<times> int \<Rightarrow> board \<Rightarrow> board" where 
   "trans_board t b \<equiv> (case t of (k\<^sub>1,k\<^sub>2) \<Rightarrow> {(i+k\<^sub>1,j+k\<^sub>2)|i j. (i,j) \<in> b})"
 
-subsection \<open>Correctness Proofs for Path and Board Translation\<close>
+subsection \<open>Correctness of Path and Board Translation\<close>
 
 lemma trans_path_length: "length ps = length (trans_path (k\<^sub>1,k\<^sub>2) ps)"
   by (induction ps) auto
@@ -1401,6 +1410,8 @@ lemma hd_take: "0 < k \<Longrightarrow> hd xs = hd (take k xs)"
 lemma last_drop: "k < length xs \<Longrightarrow> last xs = last (drop k xs)"
   by (induction xs) auto
 
+subsection \<open>Concatenate Knight's Paths and Circuits\<close>
+
 text \<open>Concatenate two knight's path on a \<open>n\<times>m\<close>-board along the 2nd axis if the first path contains
 the step \<open>s\<^sub>i \<rightarrow> s\<^sub>j\<close> and there are valid steps \<open>s\<^sub>i \<rightarrow> hd ps\<^sub>2'\<close> and \<open>s\<^sub>j \<rightarrow> last ps\<^sub>2'\<close>, where 
 \<open>ps\<^sub>2'\<close> is \<open>ps\<^sub>2\<close> is translated by \<open>m\<^sub>1\<close>. An arbitrary step in \<open>ps\<^sub>2\<close> is preserved.\<close>
@@ -1596,7 +1607,7 @@ proof -
     using si by auto
 qed
 
-section \<open>Path Parser and Path Construction\<close>
+section \<open>Parsing Paths\<close>
 
 text \<open>In this section functions are implemented to parse and construct paths. The parser converts 
 the matrix representation (\<open>(nat list) list\<close>) used in @{cite "cull_decurtins_1987" } to a path 
@@ -1635,7 +1646,8 @@ fun to_sqrs :: "nat \<Rightarrow> (nat list) list \<Rightarrow> path option" whe
 fun num_elems :: "(nat list) list \<Rightarrow> nat" where
   "num_elems (r#rs) = length r * length (r#rs)"
 
-text \<open>Convert a matrix (\<open>nat list list\<close>) to a path (\<open>(int\<times>int) list=path\<close>).\<close>
+text \<open>Convert a matrix (\<open>nat list list\<close>) to a path (\<open>path\<close>). With this function we implicitly 
+define the lower-left corner to be \<open>(1,1)\<close> and the upper-right corner to be \<open>(n,m)\<close>.\<close>
 definition "to_path rs \<equiv> to_sqrs (num_elems rs) (rev rs)"
 
 text \<open>Example\<close>
@@ -1646,12 +1658,12 @@ value "to_path
   [18,11,8,25,20],
   [1,24,19,10,7::nat]]"
 
-section \<open>Paths for \<open>5\<times>m\<close>-Boards\<close>
+section \<open>Knight's Paths for \<open>5\<times>m\<close>-Boards\<close>
 
-text \<open>Given here are knight's paths, \<open>kp5xmlr\<close> and \<open>kp5xmur\<close>, for the 
-\<open>(5\<times>m)\<close>-board that start in the lower-left corner for \<open>m\<in>{5,6,7,8,9}\<close>. The path 
-\<open>kp5xmlr\<close> ends in the lower-right corner, whereas the path \<open>kp5xmur\<close> ends 
-in the upper-right corner. The tables shows the visited squares numbered in ascending order.\<close>
+text \<open>Given here are knight's paths, \<open>kp5xmlr\<close> and \<open>kp5xmur\<close>, for the \<open>(5\<times>m)\<close>-board that start 
+in the lower-left corner for \<open>m\<in>{5,6,7,8,9}\<close>. The path \<open>kp5xmlr\<close> ends in the lower-right corner, 
+whereas the path \<open>kp5xmur\<close> ends in the upper-right corner. 
+The tables show the visited squares numbered in ascending order.\<close>
 
 abbreviation "b5x5 \<equiv> board 5 5"
 
@@ -2014,7 +2026,7 @@ text \<open>@{thm knights_path_5xm_lr_exists} and @{thm knights_path_5xm_lr_exis
 from @{cite "cull_decurtins_1987"}.\<close>
 lemmas knights_path_5xm_exists = knights_path_5xm_lr_exists knights_path_5xm_ur_exists
 
-section \<open>Paths and Circuits for \<open>6\<times>m\<close>-Boards\<close>
+section \<open>Knight's Paths and Circuits for \<open>6\<times>m\<close>-Boards\<close>
 
 abbreviation "b6x5 \<equiv> board 6 5"
 
@@ -2401,7 +2413,7 @@ text \<open>@{thm knights_path_6xm_ul_exists} and @{thm knights_circuit_6xm_exis
 from @{cite "cull_decurtins_1987"}.\<close>
 lemmas knights_path_6xm_exists = knights_path_6xm_ul_exists knights_circuit_6xm_exists
 
-section \<open>Paths and Circuits for \<open>8\<times>m\<close>-Boards\<close>
+section \<open>Knight's Paths and Circuits for \<open>8\<times>m\<close>-Boards\<close>
 
 abbreviation "b8x5 \<equiv> board 8 5"
 
@@ -2874,7 +2886,7 @@ text \<open>@{thm knights_circuit_8xm_exists} and @{thm knights_path_8xm_ul_exis
 from @{cite "cull_decurtins_1987"}.\<close>
 lemmas knights_path_8xm_exists = knights_circuit_8xm_exists knights_path_8xm_ul_exists
 
-section \<open>Paths and Circuits for \<open>n\<times>m\<close>-Boards\<close>
+section \<open>Knight's Paths and Circuits for \<open>n\<times>m\<close>-Boards\<close>
 
 text \<open>In this section the desired theorems are proved. The proof uses the previous lemmas to 
 construct paths and circuits for arbitrary \<open>n\<times>m\<close>-boards.\<close>
