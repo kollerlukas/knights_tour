@@ -2097,7 +2097,7 @@ move from square 26 to square 27.
        1 & 31 &  9 & 18 &  3 & 33
     \end{tabular}
   \end{table}\<close>
-abbreviation "kp6x6ul_wrong \<equiv> the (to_path 
+abbreviation "kp6x6ul_false \<equiv> the (to_path 
   [[14,23,6,28,12,21],
   [7,36,13,22,5,27],
   [24,15,29,35,20,11],
@@ -2105,7 +2105,8 @@ abbreviation "kp6x6ul_wrong \<equiv> the (to_path
   [16,25,2,32,10,19],
   [1,31,9,18,3,33]])"
 
-value "path_checker (board_exec 6 6) kp6x6ul_wrong"
+lemma "\<not>knights_path b6x6 kp6x6ul_false"
+  by (simp only: knights_path_exec_simp) eval
 
 text \<open>I have computed a correct Knight's path for the \<open>6\<times>6\<close>-board that ends in the upper-left.
 A Knight's path for the \<open>(6\<times>6)\<close>-board that starts in the lower-left and ends in the upper-left.
@@ -2645,7 +2646,7 @@ move from square 27 to square 28.
        1 & 33 & 15 & 44 &  3 & 31 & 17 & 42
     \end{tabular}
   \end{table}\<close>
-abbreviation "kp8x8ul_wrong \<equiv> the (to_path 
+abbreviation "kp8x8ul_false \<equiv> the (to_path 
   [[24,11,37,9,26,21,39,7],
   [36,64,25,22,38,8,27,20],
   [12,23,10,53,58,49,6,28],
@@ -2655,7 +2656,8 @@ abbreviation "kp8x8ul_wrong \<equiv> the (to_path
   [14,45,2,32,16,43,4,30],
   [1,33,15,44,3,31,17,42]])"
 
-value "path_checker (board_exec 8 8) kp8x8ul_wrong"
+lemma "\<not>knights_path b8x8 kp8x8ul_false"
+  by (simp only: knights_path_exec_simp) eval
 
 text \<open>I have computed a correct Knight's path for the \<open>8\<times>8\<close>-board that ends in the upper-left.
   \begin{table}[H]
