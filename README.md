@@ -2,7 +2,7 @@
 
 In (Cull and De Curtins, 1978) the existence of Knight's paths and Knight's circuits are proved for arbitrary `n×m`-boards with `min n m ≥ 5` and for the Knight's circuit `even n*m`.
 
-A [Knight's path](https://en.wikipedia.org/wiki/Knight%27s_tour) is a sequence of squares on a chessboard s.t. every step in sequence is a valid move for a Knight. A Knight is a chess figure that is only able to move two squares vertically and one square horizontally or two squares horizontally and one square vertically. Finding a Knight's path is an instance of the Hamiltonian Path Problem. A Knight's circuit is a Knight's path, where additionally the Knight can move from the last square to the first square of the path, forming a loop.
+A [Knight's path](https://en.wikipedia.org/wiki/Knight%27s_tour) is a sequence of squares on a chessboard s.t. every step in sequence is a valid move for a Knight that the Knight visits every square on the boards exactly once. A Knight is a chess figure that is only able to move two squares vertically and one square horizontally or two squares horizontally and one square vertically. Finding a Knight's path is an instance of the Hamiltonian Path Problem. A Knight's circuit is a Knight's path, where additionally the Knight can move from the last square to the first square of the path, forming a loop.
 
 The main idea for the proof of the existence of a Knight's path is to inductivly construct paths from a few pre-computed paths for small boards, e.g. `5×5`, `5×6`, ..., `8×9`. The paths for small boards are transformed (i.e. transpose, mirror, translate) and combined to create paths for larger boards.
 
