@@ -4,13 +4,36 @@ theory KnightsTour
   imports Main
 begin
 
-section \<open>Definitions\<close>
+section \<open>Introduction and Definitions\<close>
 
+text \<open>A Knight's path is a sequence of moves on a chessboard s.t. every step in sequence is a 
+valid move for a Knight and that the Knight visits every square on the boards exactly once. 
+A Knight is a chess figure that is only able to move two squares vertically and one square 
+horizontally or two squares horizontally and one square vertically. Finding a Knight's path is an 
+instance of the Hamiltonian Path Problem. A Knight's circuit is a Knight's path, where additionally 
+the Knight can move from the last square to the first square of the path, forming a loop.
+
+@{cite "cull_decurtins_1987"} proves the existence of a Knight's path on a \<open>n\<times>m\<close>-board for
+sufficiently large \<open>n\<close> and \<open>m\<close>. The main idea for the proof is to inductivly construct a Knight's 
+path for the \<open>n\<times>m\<close>-board from a few pre-computed Knight's paths for small boards, i.e. \<open>5\<times>5\<close>, 
+\<open>8\<times>6\<close>, ..., \<open>8\<times>9\<close>. The paths for small boards are transformed (i.e. transpose, mirror, translate) 
+and concatenated to create paths for larger boards.
+
+While formalizing the proofs I discovered two mistakes in the original proof in 
+@{cite "cull_decurtins_1987"}: (i) the pre-computed path for the \<open>6\<times>6\<close>-board that ends in 
+the upper-left (in Figure 2) and (ii) the pre-computed path for the \<open>8\<times>8\<close>-board that ends in 
+the upper-left (in Figure 5) are incorrect. I.e. on the \<open>6\<times>6\<close>-board the Knight cannot step 
+from square 26 to square 27; in the \<open>8\<times>8\<close>-board the Knight cannot step from square 27 to 
+square 28. In this formalization I have replaced the two incorrect paths with correct paths.\<close>
+
+text \<open>A square on a board is identified by its coordinates.\<close>
 type_synonym square = "int \<times> int"
+text \<open>A board is represented as a set of squares. Note, that this allows boards to have an 
+arbitrary shape and do not necessarily need to be rectangular.\<close>
 type_synonym board = "square set"
 
-text \<open>A \<open>(n\<times>m)\<close>-board is the set of all squares \<open>(i,j)\<close> where \<open>1 \<le> i \<le> n\<close> and \<open>1 \<le> j \<le> m\<close>. 
-\<open>(1,1)\<close> is the lower-left corner.\<close>
+text \<open>A (rectangular) \<open>(n\<times>m)\<close>-board is the set of all squares \<open>(i,j)\<close> where \<open>1 \<le> i \<le> n\<close> 
+and \<open>1 \<le> j \<le> m\<close>. \<open>(1,1)\<close> is the lower-left corner, and \<open>(n,m)\<close> is the upper-right corner.\<close>
 definition board :: "nat \<Rightarrow> nat \<Rightarrow> board" where
   "board n m = {(i,j) |i j. 1 \<le> i \<and> i \<le> int n \<and> 1 \<le> j \<and> j \<le> int m}"
 
