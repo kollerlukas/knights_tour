@@ -8,7 +8,7 @@ The main idea for the proof of the existence of a Knight's path is to inductivly
 
 ## Incorrect Boards & Corrections
 
-While formalizing the proofs I have noticed two mistakes in the original proof by Cull and De Curtins: (i) the pre-computed path for the `6×6` board that ends in the upper-left (in Figure 2) and (ii) the pre-computed path for the `8×8` board that ends in the upper-left (in Figure 5) are incorrect. I.e. on the `6×6` board the Knight cannot step from square 26 to square 27; in the `8×8` board the Knight cannot step from square 27 to square 28.
+While formalizing the proofs I discovered two mistakes in the original proof by Cull and De Curtins: (i) the pre-computed path for the `6×6` board that ends in the upper-left (in Figure 2) and (ii) the pre-computed path for the `8×8` board that ends in the upper-left (in Figure 5) are incorrect. I.e. on the `6×6` board the Knight cannot step from square 26 to square 27; in the `8×8` board the Knight cannot step from square 27 to square 28.
 
 I have computed correct paths for the `6×6` and `8×8`-boards that start in the lower left and end in the upper-left.
 
