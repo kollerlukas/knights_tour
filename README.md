@@ -10,7 +10,7 @@ The main idea for the proof of the existence of a Knight's path is to inductivly
 
 While formalizing the proofs I have noticed two mistakes in the original proof by Cull and De Curtins: (i) the pre-computed path for the `6×6` board that ends in the upper-left (in Figure 2) and (ii) the pre-computed path for the `8×8` board that ends in the upper-left (in Figure 5) are incorrect. I.e. on the `6×6` board the Knight cannot step from square 26 to square 27; in the `8×8` board the Knight cannot step from square 27 to square 28.
 
-I have computed a correct paths for the `6×6` and `8×8` board that start in the lower left and end in the upper-left.
+I have computed correct paths for the `6×6` and `8×8`-boards that start in the lower left and end in the upper-left.
 
 To compute the correct paths I used the python script `compute_paths.py`. In `compute_paths.py` I have implemented a simple backtracking algorithm to compute paths on arbitrary `n×m` boards for arbitrary start and end squares. The algorithm uses the heuristic to first try to explore the least accessible neighbors, as described in (Conrad, 1999).
 
