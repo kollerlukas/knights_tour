@@ -6,7 +6,7 @@ A [Knight's path](https://en.wikipedia.org/wiki/Knight%27s_tour) is an instance 
 
 The main idea for the proof of the existence of a Knight's path is to inductivly construct paths from a few pre-computed paths for small boards, e.g. `5×5`, `5×6`, ..., `8×9`. The paths for small boards are transformed (i.e. transpose, mirror, translate) and combined to create paths for larger boards.
 
-## Corrections
+## Incorrect Boards & Corrections
 
 While formalizing the proofs I have noticed two mistakes in the original proof by Cull and De Curtins: (i) the pre-computed path for the `6×6` board that ends in the upper-left (in Figure 2) and (ii) the pre-computed path for the `8×8` board that ends in the upper-left (in Figure 5) are incorrect. I.e. on the `6×6` board the Knight cannot step from square 26 to square 27; in the `8×8` board the Knight cannot step from square 27 to square 28.
 
