@@ -2,6 +2,7 @@ cull_decurtins_1978.pdf
 # latex stuff
 document/build/
 output/document
+output/outline
 
 *.thy~
 *.thy#
