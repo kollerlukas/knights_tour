@@ -1,7 +1,5 @@
 # Knight's Tour Revisited Revisited
 
-AFP entry: [Knight's Tour Revisited Revisited](https://www.isa-afp.org/entries/Knights_Tour.html)
-
 This is a Isabelle/HOL formalization of (Cull and De Curtins, 1978). In (Cull and De Curtins, 1978) the existence of a Knight's path is proved for arbitrary `n×m`-boards with `min n m ≥ 5`. If `even n*m`, then there exists a Knight's circuit.
 
 A [Knight's path](https://en.wikipedia.org/wiki/Knight%27s_tour) is a sequence of squares on a chessboard s.t. every step in sequence is a valid move for a Knight that the Knight visits every square on the boards exactly once. A Knight is a chess figure that is only able to move two squares vertically and one square horizontally or two squares horizontally and one square vertically. Finding a Knight's path is an instance of the Hamiltonian Path Problem. A Knight's circuit is a Knight's path, where additionally the Knight can move from the last square to the first square of the path, forming a loop.
