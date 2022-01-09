@@ -1671,12 +1671,13 @@ abbreviation "b5x5 \<equiv> board 5 5"
 text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
 lower-right.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-       3 & 22 & 13 & 16 &  5 \\
-      12 & 17 &  4 & 21 & 14 \\
-      23 &  2 & 15 &  6 &  9 \\
-      18 & 11 &  8 & 25 & 20 \\
-       1 & 24 & 19 & 10 &  7
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+       3 & 22 & 13 & 16 &  5 \\ \hline
+      12 & 17 &  4 & 21 & 14 \\ \hline
+      23 &  2 & 15 &  6 &  9 \\ \hline
+      18 & 11 &  8 & 25 & 20 \\ \hline
+       1 & 24 & 19 & 10 &  7 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x5lr \<equiv> the (to_path 
@@ -1697,12 +1698,13 @@ lemma kp_5x5_lr_non_nil: "kp5x5lr \<noteq> []" by eval
 text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
 upper-right.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-       7 & 12 & 15 & 20 &  5 \\
-      16 & 21 &  6 & 25 & 14 \\
-      11 &  8 & 13 &  4 & 19 \\
-      22 & 17 &  2 &  9 & 24 \\
-       1 & 10 & 23 & 18 &  3
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+       7 & 12 & 15 & 20 &  5 \\ \hline
+      16 & 21 &  6 & 25 & 14 \\ \hline
+      11 &  8 & 13 &  4 & 19 \\ \hline
+      22 & 17 &  2 &  9 & 24 \\ \hline
+       1 & 10 & 23 & 18 &  3 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x5ur \<equiv> the (to_path 
@@ -1725,12 +1727,13 @@ abbreviation "b5x6 \<equiv> board 5 6"
 text \<open>A Knight's path for the \<open>(5\<times>6)\<close>-board that starts in the lower-left and ends in the 
 lower-right.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-       7 & 14 & 21 & 28 &  5 & 12 \\
-      22 & 27 &  6 & 13 & 20 & 29 \\
-      15 &  8 & 17 & 24 & 11 &  4 \\
-      26 & 23 &  2 &  9 & 30 & 19 \\
-       1 & 16 & 25 & 18 &  3 & 10
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+       7 & 14 & 21 & 28 &  5 & 12 \\ \hline
+      22 & 27 &  6 & 13 & 20 & 29 \\ \hline
+      15 &  8 & 17 & 24 & 11 &  4 \\ \hline
+      26 & 23 &  2 &  9 & 30 & 19 \\ \hline
+       1 & 16 & 25 & 18 &  3 & 10 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x6lr \<equiv> the (to_path 
@@ -1751,12 +1754,13 @@ lemma kp_5x6_lr_non_nil: "kp5x6lr \<noteq> []" by eval
 text \<open>A Knight's path for the \<open>(5\<times>6)\<close>-board that starts in the lower-left and ends in the 
 upper-right.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-       3 & 10 & 29 & 20 &  5 & 12 \\
-      28 & 19 &  4 & 11 & 30 & 21 \\
-       9 &  2 & 17 & 24 & 13 &  6 \\
-      18 & 27 &  8 & 15 & 22 & 25 \\
-       1 & 16 & 23 & 26 &  7 & 14
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+       3 & 10 & 29 & 20 &  5 & 12 \\ \hline
+      28 & 19 &  4 & 11 & 30 & 21 \\ \hline
+       9 &  2 & 17 & 24 & 13 &  6 \\ \hline
+      18 & 27 &  8 & 15 & 22 & 25 \\ \hline
+       1 & 16 & 23 & 26 &  7 & 14 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x6ur \<equiv> the (to_path 
@@ -1779,12 +1783,13 @@ abbreviation "b5x7 \<equiv> board 5 7"
 text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
 lower-right.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-       3 & 12 & 21 & 30 &  5 & 14 & 23 \\
-      20 & 29 &  4 & 13 & 22 & 31 &  6 \\
-      11 &  2 & 19 & 32 &  7 & 24 & 15 \\
-      28 & 33 & 10 & 17 & 26 & 35 &  8 \\
-       1 & 18 & 27 & 34 &  9 & 16 & 25
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+       3 & 12 & 21 & 30 &  5 & 14 & 23 \\ \hline
+      20 & 29 &  4 & 13 & 22 & 31 &  6 \\ \hline
+      11 &  2 & 19 & 32 &  7 & 24 & 15 \\ \hline
+      28 & 33 & 10 & 17 & 26 & 35 &  8 \\ \hline
+       1 & 18 & 27 & 34 &  9 & 16 & 25 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x7lr \<equiv> the (to_path 
@@ -1805,12 +1810,13 @@ lemma kp_5x7_lr_non_nil: "kp5x7lr \<noteq> []" by eval
 text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-right.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-       3 & 32 & 11 & 34 &  5 & 26 & 13 \\
-      10 & 19 &  4 & 25 & 12 & 35 &  6 \\
-      31 &  2 & 33 & 20 & 23 & 14 & 27 \\
-      18 &  9 & 24 & 29 & 16 &  7 & 22 \\
-       1 & 30 & 17 &  8 & 21 & 28 & 15
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+       3 & 32 & 11 & 34 &  5 & 26 & 13 \\ \hline
+      10 & 19 &  4 & 25 & 12 & 35 &  6 \\ \hline
+      31 &  2 & 33 & 20 & 23 & 14 & 27 \\ \hline
+      18 &  9 & 24 & 29 & 16 &  7 & 22 \\ \hline
+       1 & 30 & 17 &  8 & 21 & 28 & 15 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x7ur \<equiv> the (to_path 
@@ -1833,12 +1839,13 @@ abbreviation "b5x8 \<equiv> board 5 8"
 text \<open>A Knight's path for the \<open>(5\<times>8)\<close>-board that starts in the lower-left and ends in the 
 lower-right.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-       3 & 12 & 37 & 26 &  5 & 14 & 17 & 28 \\
-      34 & 23 &  4 & 13 & 36 & 27 &  6 & 15 \\
-      11 &  2 & 35 & 38 & 25 & 16 & 29 & 18 \\
-      22 & 33 & 24 &  9 & 20 & 31 & 40 &  7 \\
-       1 & 10 & 21 & 32 & 39 &  8 & 19 & 30
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+       3 & 12 & 37 & 26 &  5 & 14 & 17 & 28 \\ \hline
+      34 & 23 &  4 & 13 & 36 & 27 &  6 & 15 \\ \hline
+      11 &  2 & 35 & 38 & 25 & 16 & 29 & 18 \\ \hline
+      22 & 33 & 24 &  9 & 20 & 31 & 40 &  7 \\ \hline
+       1 & 10 & 21 & 32 & 39 &  8 & 19 & 30 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x8lr \<equiv> the (to_path 
@@ -1859,12 +1866,13 @@ lemma kp_5x8_lr_non_nil: "kp5x8lr \<noteq> []" by eval
 text \<open>A Knight's path for the \<open>(5\<times>8)\<close>-board that starts in the lower-left and ends in the 
 upper-right.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      33 &  8 & 17 & 38 & 35 &  6 & 15 & 24 \\
-      18 & 37 & 34 &  7 & 16 & 25 & 40 &  5 \\
-       9 & 32 & 29 & 36 & 39 & 14 & 23 & 26 \\
-      30 & 19 &  2 & 11 & 28 & 21 &  4 & 13 \\
-       1 & 10 & 31 & 20 &  3 & 12 & 27 & 22
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      33 &  8 & 17 & 38 & 35 &  6 & 15 & 24 \\ \hline
+      18 & 37 & 34 &  7 & 16 & 25 & 40 &  5 \\ \hline
+       9 & 32 & 29 & 36 & 39 & 14 & 23 & 26 \\ \hline
+      30 & 19 &  2 & 11 & 28 & 21 &  4 & 13 \\ \hline
+       1 & 10 & 31 & 20 &  3 & 12 & 27 & 22 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x8ur \<equiv> the (to_path 
@@ -1887,12 +1895,13 @@ abbreviation "b5x9 \<equiv> board 5 9"
 text \<open>
   A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the lower-right.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-       9 &  4 & 11 & 16 & 23 & 42 & 33 & 36 & 25 \\
-      12 & 17 &  8 &  3 & 32 & 37 & 24 & 41 & 34 \\
-       5 & 10 & 15 & 20 & 43 & 22 & 35 & 26 & 29 \\
-      18 & 13 &  2 &  7 & 38 & 31 & 28 & 45 & 40 \\
-       1 &  6 & 19 & 14 & 21 & 44 & 39 & 30 & 27
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+       9 &  4 & 11 & 16 & 23 & 42 & 33 & 36 & 25 \\ \hline
+      12 & 17 &  8 &  3 & 32 & 37 & 24 & 41 & 34 \\ \hline
+       5 & 10 & 15 & 20 & 43 & 22 & 35 & 26 & 29 \\ \hline
+      18 & 13 &  2 &  7 & 38 & 31 & 28 & 45 & 40 \\ \hline
+       1 &  6 & 19 & 14 & 21 & 44 & 39 & 30 & 27 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x9lr \<equiv> the (to_path 
@@ -1913,12 +1922,13 @@ lemma kp_5x9_lr_non_nil: "kp5x9lr \<noteq> []" by eval
 text \<open>
   A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the upper-right.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-       9 &  4 & 11 & 16 & 27 & 32 & 35 & 40 & 25 \\
-      12 & 17 &  8 &  3 & 36 & 41 & 26 & 45 & 34 \\
-       5 & 10 & 15 & 20 & 31 & 28 & 33 & 24 & 39 \\
-      18 & 13 &  2 &  7 & 42 & 37 & 22 & 29 & 44 \\
-       1 &  6 & 19 & 14 & 21 & 30 & 43 & 38 & 23
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+       9 &  4 & 11 & 16 & 27 & 32 & 35 & 40 & 25 \\ \hline
+      12 & 17 &  8 &  3 & 36 & 41 & 26 & 45 & 34 \\ \hline
+       5 & 10 & 15 & 20 & 31 & 28 & 33 & 24 & 39 \\ \hline
+      18 & 13 &  2 &  7 & 42 & 37 & 22 & 29 & 44 \\ \hline
+       1 &  6 & 19 & 14 & 21 & 30 & 43 & 38 & 23 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x9ur \<equiv> the (to_path 
@@ -2034,13 +2044,14 @@ abbreviation "b6x5 \<equiv> board 6 5"
 text \<open>
   A Knight's path for the \<open>(6\<times>5)\<close>-board that starts in the lower-left and ends in the upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-      10 & 19 &  4 & 29 & 12 \\
-       3 & 30 & 11 & 20 &  5 \\
-      18 &  9 & 24 & 13 & 28 \\
-      25 &  2 & 17 &  6 & 21 \\
-      16 & 23 &  8 & 27 & 14 \\
-       1 & 26 & 15 & 22 &  7
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      10 & 19 &  4 & 29 & 12 \\ \hline
+       3 & 30 & 11 & 20 &  5 \\ \hline
+      18 &  9 & 24 & 13 & 28 \\ \hline
+      25 &  2 & 17 &  6 & 21 \\ \hline
+      16 & 23 &  8 & 27 & 14 \\ \hline
+       1 & 26 & 15 & 22 &  7 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x5ul \<equiv> the (to_path 
@@ -2061,13 +2072,14 @@ lemma kp_6x5_ul_non_nil: "kp6x5ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(6\<times>5)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-      16 &  9 &  6 & 27 & 18 \\
-       7 & 26 & 17 & 14 &  5 \\
-      10 & 15 &  8 & 19 & 28 \\
-      25 & 30 & 23 &  4 & 13 \\
-      22 & 11 &  2 & 29 & 20 \\
-       1 & 24 & 21 & 12 &  3
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      16 &  9 &  6 & 27 & 18 \\ \hline
+       7 & 26 & 17 & 14 &  5 \\ \hline
+      10 & 15 &  8 & 19 & 28 \\ \hline
+      25 & 30 & 23 &  4 & 13 \\ \hline
+      22 & 11 &  2 & 29 & 20 \\ \hline
+       1 & 24 & 21 & 12 &  3 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc6x5 \<equiv> the (to_path 
@@ -2089,13 +2101,14 @@ abbreviation "b6x6 \<equiv> board 6 6"
 text \<open>The path given for the \<open>6\<times>6\<close>-board that ends in the upper-left is wrong. The Knight cannot 
 move from square 26 to square 27.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-      14 & 23 &  6 & 28 & 12 & 21 \\
-       7 & 36 & 13 & 22 &  5 & \color{red}{27} \\
-      24 & 15 & 29 & 35 & 20 & 11 \\
-      30 &  8 & 17 & \color{red}{26} & 34 &  4 \\
-      16 & 25 &  2 & 32 & 10 & 19 \\
-       1 & 31 &  9 & 18 &  3 & 33
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      14 & 23 &  6 & 28 & 12 & 21 \\ \hline
+       7 & 36 & 13 & 22 &  5 & \color{red}{27} \\ \hline
+      24 & 15 & 29 & 35 & 20 & 11 \\ \hline
+      30 &  8 & 17 & \color{red}{26} & 34 &  4 \\ \hline
+      16 & 25 &  2 & 32 & 10 & 19 \\ \hline
+       1 & 31 &  9 & 18 &  3 & 33 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x6ul_false \<equiv> the (to_path 
@@ -2112,13 +2125,14 @@ lemma "\<not>knights_path b6x6 kp6x6ul_false"
 text \<open>I have computed a correct Knight's path for the \<open>6\<times>6\<close>-board that ends in the upper-left.
 A Knight's path for the \<open>(6\<times>6)\<close>-board that starts in the lower-left and ends in the upper-left.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-       8 & 25 & 10 & 21 &  6 & 23 \\
-      11 & 36 &  7 & 24 & 33 & 20 \\
-      26 &  9 & 34 &  3 & 22 &  5 \\
-      35 & 12 & 15 & 30 & 19 & 32 \\
-      14 & 27 &  2 & 17 &  4 & 29 \\
-       1 & 16 & 13 & 28 & 31 & 18
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+       8 & 25 & 10 & 21 &  6 & 23 \\ \hline
+      11 & 36 &  7 & 24 & 33 & 20 \\ \hline
+      26 &  9 & 34 &  3 & 22 &  5 \\ \hline
+      35 & 12 & 15 & 30 & 19 & 32 \\ \hline
+      14 & 27 &  2 & 17 &  4 & 29 \\ \hline
+       1 & 16 & 13 & 28 & 31 & 18 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x6ul \<equiv> the (to_path 
@@ -2139,13 +2153,14 @@ lemma kp_6x6_ul_non_nil: "kp6x6ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(6\<times>6)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-       4 & 25 & 34 & 15 & 18 &  7 \\
-      35 & 14 &  5 &  8 & 33 & 16 \\
-      24 &  3 & 26 & 17 &  6 & 19 \\
-      13 & 36 & 23 & 30 &  9 & 32 \\
-      22 & 27 &  2 & 11 & 20 & 29 \\
-       1 & 12 & 21 & 28 & 31 & 10
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+       4 & 25 & 34 & 15 & 18 &  7 \\ \hline
+      35 & 14 &  5 &  8 & 33 & 16 \\ \hline
+      24 &  3 & 26 & 17 &  6 & 19 \\ \hline
+      13 & 36 & 23 & 30 &  9 & 32 \\ \hline
+      22 & 27 &  2 & 11 & 20 & 29 \\ \hline
+       1 & 12 & 21 & 28 & 31 & 10 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc6x6 \<equiv> the (to_path 
@@ -2167,13 +2182,14 @@ abbreviation "b6x7 \<equiv> board 6 7"
 text \<open>A Knight's path for the \<open>(6\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-      18 & 23 &  8 & 39 & 16 & 25 &  6 \\
-       9 & 42 & 17 & 24 &  7 & 40 & 15 \\
-      22 & 19 & 32 & 41 & 38 &  5 & 26 \\
-      33 & 10 & 21 & 28 & 31 & 14 & 37 \\
-      20 & 29 &  2 & 35 & 12 & 27 &  4 \\
-       1 & 34 & 11 & 30 &  3 & 36 & 13
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      18 & 23 &  8 & 39 & 16 & 25 &  6 \\ \hline
+       9 & 42 & 17 & 24 &  7 & 40 & 15 \\ \hline
+      22 & 19 & 32 & 41 & 38 &  5 & 26 \\ \hline
+      33 & 10 & 21 & 28 & 31 & 14 & 37 \\ \hline
+      20 & 29 &  2 & 35 & 12 & 27 &  4 \\ \hline
+       1 & 34 & 11 & 30 &  3 & 36 & 13 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x7ul \<equiv> the (to_path 
@@ -2194,13 +2210,14 @@ lemma kp_6x7_ul_non_nil: "kp6x7ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(6\<times>7)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-      26 & 37 &  8 & 17 & 28 & 31 &  6 \\
-       9 & 18 & 27 & 36 &  7 & 16 & 29 \\
-      38 & 25 & 10 & 19 & 30 &  5 & 32 \\
-      11 & 42 & 23 & 40 & 35 & 20 & 15 \\
-      24 & 39 &  2 & 13 & 22 & 33 &  4 \\
-       1 & 12 & 41 & 34 &  3 & 14 & 21
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      26 & 37 &  8 & 17 & 28 & 31 &  6 \\ \hline
+       9 & 18 & 27 & 36 &  7 & 16 & 29 \\ \hline
+      38 & 25 & 10 & 19 & 30 &  5 & 32 \\ \hline
+      11 & 42 & 23 & 40 & 35 & 20 & 15 \\ \hline
+      24 & 39 &  2 & 13 & 22 & 33 &  4 \\ \hline
+       1 & 12 & 41 & 34 &  3 & 14 & 21 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc6x7 \<equiv> the (to_path 
@@ -2222,13 +2239,14 @@ abbreviation "b6x8 \<equiv> board 6 8"
 text \<open>A Knight's path for the \<open>(6\<times>8)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      18 & 31 &  8 & 35 & 16 & 33 &  6 & 45 \\
-       9 & 48 & 17 & 32 &  7 & 46 & 15 & 26 \\
-      30 & 19 & 36 & 47 & 34 & 27 & 44 &  5 \\
-      37 & 10 & 21 & 28 & 43 & 40 & 25 & 14 \\
-      20 & 29 &  2 & 39 & 12 & 23 &  4 & 41 \\
-       1 & 38 & 11 & 22 &  3 & 42 & 13 & 24
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      18 & 31 &  8 & 35 & 16 & 33 &  6 & 45 \\ \hline
+       9 & 48 & 17 & 32 &  7 & 46 & 15 & 26 \\ \hline
+      30 & 19 & 36 & 47 & 34 & 27 & 44 &  5 \\ \hline
+      37 & 10 & 21 & 28 & 43 & 40 & 25 & 14 \\ \hline
+      20 & 29 &  2 & 39 & 12 & 23 &  4 & 41 \\ \hline
+       1 & 38 & 11 & 22 &  3 & 42 & 13 & 24 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x8ul \<equiv> the (to_path 
@@ -2249,13 +2267,14 @@ lemma kp_6x8_ul_non_nil: "kp6x8ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(6\<times>8)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      30 & 35 &  8 & 15 & 28 & 39 &  6 & 13 \\
-       9 & 16 & 29 & 36 &  7 & 14 & 27 & 38 \\
-      34 & 31 & 10 & 23 & 40 & 37 & 12 &  5 \\
-      17 & 48 & 33 & 46 & 11 & 22 & 41 & 26 \\
-      32 & 45 &  2 & 19 & 24 & 43 &  4 & 21 \\
-       1 & 18 & 47 & 44 &  3 & 20 & 25 & 42
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      30 & 35 &  8 & 15 & 28 & 39 &  6 & 13 \\ \hline
+       9 & 16 & 29 & 36 &  7 & 14 & 27 & 38 \\ \hline
+      34 & 31 & 10 & 23 & 40 & 37 & 12 &  5 \\ \hline
+      17 & 48 & 33 & 46 & 11 & 22 & 41 & 26 \\ \hline
+      32 & 45 &  2 & 19 & 24 & 43 &  4 & 21 \\ \hline
+       1 & 18 & 47 & 44 &  3 & 20 & 25 & 42 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc6x8 \<equiv> the (to_path 
@@ -2277,13 +2296,14 @@ abbreviation "b6x9 \<equiv> board 6 9"
 text \<open>A Knight's path for the \<open>(6\<times>9)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      22 & 45 & 10 & 53 & 20 & 47 &  8 & 35 & 18 \\
-      11 & 54 & 21 & 46 &  9 & 36 & 19 & 48 &  7 \\
-      44 & 23 & 42 & 37 & 52 & 49 & 32 & 17 & 34 \\
-      41 & 12 & 25 & 50 & 27 & 38 & 29 &  6 & 31 \\
-      24 & 43 &  2 & 39 & 14 & 51 &  4 & 33 & 16 \\
-       1 & 40 & 13 & 26 &  3 & 28 & 15 & 30 &  5
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      22 & 45 & 10 & 53 & 20 & 47 &  8 & 35 & 18 \\ \hline
+      11 & 54 & 21 & 46 &  9 & 36 & 19 & 48 &  7 \\ \hline
+      44 & 23 & 42 & 37 & 52 & 49 & 32 & 17 & 34 \\ \hline
+      41 & 12 & 25 & 50 & 27 & 38 & 29 &  6 & 31 \\ \hline
+      24 & 43 &  2 & 39 & 14 & 51 &  4 & 33 & 16 \\ \hline
+       1 & 40 & 13 & 26 &  3 & 28 & 15 & 30 &  5 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp6x9ul \<equiv> the (to_path 
@@ -2304,13 +2324,14 @@ lemma kp_6x9_ul_non_nil: "kp6x9ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(6\<times>9)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      14 & 49 &  4 & 51 & 24 & 39 &  6 & 29 & 22 \\
-       3 & 52 & 13 & 40 &  5 & 32 & 23 & 42 &  7 \\
-      48 & 15 & 50 & 25 & 38 & 41 & 28 & 21 & 30 \\
-      53 &  2 & 37 & 12 & 33 & 26 & 31 &  8 & 43 \\
-      16 & 47 & 54 & 35 & 18 & 45 & 10 & 27 & 20 \\
-       1 & 36 & 17 & 46 & 11 & 34 & 19 & 44 &  9
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      14 & 49 &  4 & 51 & 24 & 39 &  6 & 29 & 22 \\ \hline
+       3 & 52 & 13 & 40 &  5 & 32 & 23 & 42 &  7 \\ \hline
+      48 & 15 & 50 & 25 & 38 & 41 & 28 & 21 & 30 \\ \hline
+      53 &  2 & 37 & 12 & 33 & 26 & 31 &  8 & 43 \\ \hline
+      16 & 47 & 54 & 35 & 18 & 45 & 10 & 27 & 20 \\ \hline
+       1 & 36 & 17 & 46 & 11 & 34 & 19 & 44 &  9 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc6x9 \<equiv> the (to_path 
@@ -2422,15 +2443,16 @@ abbreviation "b8x5 \<equiv> board 8 5"
 text \<open>A Knight's path for the \<open>(8\<times>5)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-      28 &  7 & 22 & 39 & 26 \\
-      23 & 40 & 27 &  6 & 21 \\
-       8 & 29 & 38 & 25 & 14 \\
-      37 & 24 & 15 & 20 &  5 \\
-      16 &  9 & 30 & 13 & 34 \\
-      31 & 36 & 33 &  4 & 19 \\
-      10 & 17 &  2 & 35 & 12 \\
-       1 & 32 & 11 & 18 &  3
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      28 &  7 & 22 & 39 & 26 \\ \hline
+      23 & 40 & 27 &  6 & 21 \\ \hline
+       8 & 29 & 38 & 25 & 14 \\ \hline
+      37 & 24 & 15 & 20 &  5 \\ \hline
+      16 &  9 & 30 & 13 & 34 \\ \hline
+      31 & 36 & 33 &  4 & 19 \\ \hline
+      10 & 17 &  2 & 35 & 12 \\ \hline
+       1 & 32 & 11 & 18 &  3 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x5ul \<equiv> the (to_path 
@@ -2453,15 +2475,16 @@ lemma kp_8x5_ul_non_nil: "kp8x5ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(8\<times>5)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-      26 &  7 & 28 & 15 & 24 \\
-      31 & 16 & 25 &  6 & 29 \\
-       8 & 27 & 30 & 23 & 14 \\
-      17 & 32 & 39 & 34 &  5 \\
-      38 &  9 & 18 & 13 & 22 \\
-      19 & 40 & 33 &  4 & 35 \\
-      10 & 37 &  2 & 21 & 12 \\
-       1 & 20 & 11 & 36 &  3
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+      26 &  7 & 28 & 15 & 24 \\ \hline
+      31 & 16 & 25 &  6 & 29 \\ \hline
+       8 & 27 & 30 & 23 & 14 \\ \hline
+      17 & 32 & 39 & 34 &  5 \\ \hline
+      38 &  9 & 18 & 13 & 22 \\ \hline
+      19 & 40 & 33 &  4 & 35 \\ \hline
+      10 & 37 &  2 & 21 & 12 \\ \hline
+       1 & 20 & 11 & 36 &  3 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc8x5 \<equiv> the (to_path 
@@ -2494,15 +2517,16 @@ abbreviation "b8x6 \<equiv> board 8 6"
 text \<open>A Knight's path for the \<open>(8\<times>6)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-      42 & 11 & 26 &  9 & 34 & 13 \\
-      25 & 48 & 43 & 12 & 27 &  8 \\
-      44 & 41 & 10 & 33 & 14 & 35 \\
-      47 & 24 & 45 & 20 &  7 & 28 \\
-      40 & 19 & 32 &  3 & 36 & 15 \\
-      23 & 46 & 21 &  6 & 29 &  4 \\
-      18 & 39 &  2 & 31 & 16 & 37 \\
-       1 & 22 & 17 & 38 &  5 & 30
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      42 & 11 & 26 &  9 & 34 & 13 \\ \hline
+      25 & 48 & 43 & 12 & 27 &  8 \\ \hline
+      44 & 41 & 10 & 33 & 14 & 35 \\ \hline
+      47 & 24 & 45 & 20 &  7 & 28 \\ \hline
+      40 & 19 & 32 &  3 & 36 & 15 \\ \hline
+      23 & 46 & 21 &  6 & 29 &  4 \\ \hline
+      18 & 39 &  2 & 31 & 16 & 37 \\ \hline
+       1 & 22 & 17 & 38 &  5 & 30 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x6ul \<equiv> the (to_path 
@@ -2526,15 +2550,16 @@ lemma kp_8x6_ul_non_nil: "kp8x6ul \<noteq> []" by eval
 text \<open>A Knight's circuit for the \<open>(8\<times>6)\<close>-board. I have reversed circuit s.t. the circuit steps 
 from \<open>(2,5)\<close> to \<open>(4,6)\<close> and not the other way around. This makes the proofs easier.
   \begin{table}[H]
-    \begin{tabular}{llllll}
-       8 & 29 & 24 & 45 & 12 & 37 \\
-      25 & 46 &  9 & 38 & 23 & 44 \\
-      30 &  7 & 28 & 13 & 36 & 11 \\
-      47 & 26 & 39 & 10 & 43 & 22 \\
-       6 & 31 &  4 & 27 & 14 & 35 \\
-       3 & 48 & 17 & 40 & 21 & 42 \\
-      32 &  5 &  2 & 19 & 34 & 15 \\
-       1 & 18 & 33 & 16 & 41 & 20
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+       8 & 29 & 24 & 45 & 12 & 37 \\ \hline
+      25 & 46 &  9 & 38 & 23 & 44 \\ \hline
+      30 &  7 & 28 & 13 & 36 & 11 \\ \hline
+      47 & 26 & 39 & 10 & 43 & 22 \\ \hline
+       6 & 31 &  4 & 27 & 14 & 35 \\ \hline
+       3 & 48 & 17 & 40 & 21 & 42 \\ \hline
+      32 &  5 &  2 & 19 & 34 & 15 \\ \hline
+       1 & 18 & 33 & 16 & 41 & 20 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc8x6 \<equiv> the (to_path 
@@ -2565,15 +2590,16 @@ abbreviation "b8x7 \<equiv> board 8 7"
 text \<open>A Knight's path for the \<open>(8\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-      38 & 19 &  6 & 55 & 46 & 21 &  8 \\
-       5 & 56 & 39 & 20 &  7 & 54 & 45 \\
-      18 & 37 &  4 & 47 & 34 &  9 & 22 \\
-       3 & 48 & 35 & 40 & 53 & 44 & 33 \\
-      36 & 17 & 52 & 49 & 32 & 23 & 10 \\
-      51 &  2 & 29 & 14 & 41 & 26 & 43 \\
-      16 & 13 & 50 & 31 & 28 & 11 & 24 \\
-       1 & 30 & 15 & 12 & 25 & 42 & 27
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      38 & 19 &  6 & 55 & 46 & 21 &  8 \\ \hline
+       5 & 56 & 39 & 20 &  7 & 54 & 45 \\ \hline
+      18 & 37 &  4 & 47 & 34 &  9 & 22 \\ \hline
+       3 & 48 & 35 & 40 & 53 & 44 & 33 \\ \hline
+      36 & 17 & 52 & 49 & 32 & 23 & 10 \\ \hline
+      51 &  2 & 29 & 14 & 41 & 26 & 43 \\ \hline
+      16 & 13 & 50 & 31 & 28 & 11 & 24 \\ \hline
+       1 & 30 & 15 & 12 & 25 & 42 & 27 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x7ul \<equiv> the (to_path 
@@ -2597,15 +2623,16 @@ lemma kp_8x7_ul_non_nil: "kp8x7ul \<noteq> []" by eval
 text \<open>A Knight's circuit for the \<open>(8\<times>7)\<close>-board. I have reversed circuit s.t. the circuit steps 
 from \<open>(2,6)\<close> to \<open>(4,7)\<close> and not the other way around. This makes the proofs easier.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-      36 & 31 & 18 & 53 & 20 & 29 & 44 \\
-      17 & 54 & 35 & 30 & 45 & 52 & 21 \\
-      32 & 37 & 46 & 19 &  8 & 43 & 28 \\
-      55 & 16 &  7 & 34 & 27 & 22 & 51 \\
-      38 & 33 & 26 & 47 &  6 &  9 & 42 \\
-       3 & 56 & 15 & 12 & 25 & 50 & 23 \\
-      14 & 39 &  2 &  5 & 48 & 41 & 10 \\
-       1 &  4 & 13 & 40 & 11 & 24 & 49 
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      36 & 31 & 18 & 53 & 20 & 29 & 44 \\ \hline
+      17 & 54 & 35 & 30 & 45 & 52 & 21 \\ \hline
+      32 & 37 & 46 & 19 &  8 & 43 & 28 \\ \hline
+      55 & 16 &  7 & 34 & 27 & 22 & 51 \\ \hline
+      38 & 33 & 26 & 47 &  6 &  9 & 42 \\ \hline
+       3 & 56 & 15 & 12 & 25 & 50 & 23 \\ \hline
+      14 & 39 &  2 &  5 & 48 & 41 & 10 \\ \hline
+       1 &  4 & 13 & 40 & 11 & 24 & 49 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc8x7 \<equiv> the (to_path 
@@ -2636,15 +2663,16 @@ abbreviation "b8x8 \<equiv> board 8 8"
 text \<open>The path given for the \<open>8\<times>8\<close>-board that ends in the upper-left is wrong. The Knight cannot 
 move from square 27 to square 28.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      24 & 11 & 37 &  9 & 26 & 21 & 39 &  7 \\
-      36 & 64 & 24 & 22 & 38 &  8 & \color{red}{27} & 20 \\
-      12 & 23 & 10 & 53 & 58 & 49 &  6 & \color{red}{28} \\
-      63 & 35 & 61 & 50 & 55 & 52 & 19 & 40 \\
-      46 & 13 & 54 & 57 & 48 & 59 & 29 &  5 \\
-      34 & 62 & 47 & 60 & 51 & 56 & 41 & 18 \\
-      14 & 45 &  2 & 32 & 16 & 43 &  4 & 30 \\
-       1 & 33 & 15 & 44 &  3 & 31 & 17 & 42
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      24 & 11 & 37 &  9 & 26 & 21 & 39 &  7 \\ \hline
+      36 & 64 & 24 & 22 & 38 &  8 & \color{red}{27} & 20 \\ \hline
+      12 & 23 & 10 & 53 & 58 & 49 &  6 & \color{red}{28} \\ \hline
+      63 & 35 & 61 & 50 & 55 & 52 & 19 & 40 \\ \hline
+      46 & 13 & 54 & 57 & 48 & 59 & 29 &  5 \\ \hline
+      34 & 62 & 47 & 60 & 51 & 56 & 41 & 18 \\ \hline
+      14 & 45 &  2 & 32 & 16 & 43 &  4 & 30 \\ \hline
+       1 & 33 & 15 & 44 &  3 & 31 & 17 & 42 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x8ul_false \<equiv> the (to_path 
@@ -2662,15 +2690,16 @@ lemma "\<not>knights_path b8x8 kp8x8ul_false"
 
 text \<open>I have computed a correct Knight's path for the \<open>8\<times>8\<close>-board that ends in the upper-left.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      38 & 41 & 36 & 27 & 32 & 43 & 20 & 25 \\
-      35 & 64 & 39 & 42 & 21 & 26 & 29 & 44 \\
-      40 & 37 &  6 & 33 & 28 & 31 & 24 & 19 \\
-       5 & 34 & 63 & 14 &  7 & 22 & 45 & 30 \\
-      62 & 13 &  4 &  9 & 58 & 49 & 18 & 23 \\
-       3 & 10 & 61 & 52 & 15 &  8 & 57 & 46 \\
-      12 & 53 &  2 & 59 & 48 & 55 & 50 & 17 \\
-       1 & 60 & 11 & 54 & 51 & 16 & 47 & 56
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      38 & 41 & 36 & 27 & 32 & 43 & 20 & 25 \\ \hline
+      35 & 64 & 39 & 42 & 21 & 26 & 29 & 44 \\ \hline
+      40 & 37 &  6 & 33 & 28 & 31 & 24 & 19 \\ \hline
+       5 & 34 & 63 & 14 &  7 & 22 & 45 & 30 \\ \hline
+      62 & 13 &  4 &  9 & 58 & 49 & 18 & 23 \\ \hline
+       3 & 10 & 61 & 52 & 15 &  8 & 57 & 46 \\ \hline
+      12 & 53 &  2 & 59 & 48 & 55 & 50 & 17 \\ \hline
+       1 & 60 & 11 & 54 & 51 & 16 & 47 & 56 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x8ul \<equiv> the (to_path 
@@ -2694,15 +2723,16 @@ lemma kp_8x8_ul_non_nil: "kp8x8ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(8\<times>8)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{llllllll}
-      48 & 13 & 30 &  9 & 56 & 45 & 28 &  7 \\
-      31 & 10 & 47 & 50 & 29 &  8 & 57 & 44 \\
-      14 & 49 & 12 & 55 & 46 & 59 &  6 & 27 \\
-      11 & 32 & 37 & 60 & 51 & 54 & 43 & 58 \\
-      36 & 15 & 52 & 63 & 38 & 61 & 26 &  5 \\
-      33 & 64 & 35 & 18 & 53 & 40 & 23 & 42 \\
-      16 & 19 &  2 & 39 & 62 & 21 &  4 & 25 \\
-       1 & 34 & 17 & 20 &  3 & 24 & 41 & 22
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+      \hline
+      48 & 13 & 30 &  9 & 56 & 45 & 28 &  7 \\ \hline
+      31 & 10 & 47 & 50 & 29 &  8 & 57 & 44 \\ \hline
+      14 & 49 & 12 & 55 & 46 & 59 &  6 & 27 \\ \hline
+      11 & 32 & 37 & 60 & 51 & 54 & 43 & 58 \\ \hline
+      36 & 15 & 52 & 63 & 38 & 61 & 26 &  5 \\ \hline
+      33 & 64 & 35 & 18 & 53 & 40 & 23 & 42 \\ \hline
+      16 & 19 &  2 & 39 & 62 & 21 &  4 & 25 \\ \hline
+       1 & 34 & 17 & 20 &  3 & 24 & 41 & 22 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc8x8 \<equiv> the (to_path 
@@ -2733,15 +2763,16 @@ abbreviation "b8x9 \<equiv> board 8 9"
 text \<open>A Knight's path for the \<open>(8\<times>9)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      32 & 47 &  6 & 71 & 30 & 45 &  8 & 43 & 26 \\
-       5 & 72 & 31 & 46 &  7 & 70 & 27 & 22 &  9 \\
-      48 & 33 &  4 & 29 & 64 & 23 & 44 & 25 & 42 \\
-       3 & 60 & 35 & 62 & 69 & 28 & 41 & 10 & 21 \\
-      34 & 49 & 68 & 65 & 36 & 63 & 24 & 55 & 40 \\
-      59 &  2 & 61 & 16 & 67 & 56 & 37 & 20 & 11 \\
-      50 & 15 & 66 & 57 & 52 & 13 & 18 & 39 & 54 \\
-       1 & 58 & 51 & 14 & 17 & 38 & 53 & 12 & 19
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      32 & 47 &  6 & 71 & 30 & 45 &  8 & 43 & 26 \\ \hline
+       5 & 72 & 31 & 46 &  7 & 70 & 27 & 22 &  9 \\ \hline
+      48 & 33 &  4 & 29 & 64 & 23 & 44 & 25 & 42 \\ \hline
+       3 & 60 & 35 & 62 & 69 & 28 & 41 & 10 & 21 \\ \hline
+      34 & 49 & 68 & 65 & 36 & 63 & 24 & 55 & 40 \\ \hline
+      59 &  2 & 61 & 16 & 67 & 56 & 37 & 20 & 11 \\ \hline
+      50 & 15 & 66 & 57 & 52 & 13 & 18 & 39 & 54 \\ \hline
+       1 & 58 & 51 & 14 & 17 & 38 & 53 & 12 & 19 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp8x9ul \<equiv> the (to_path 
@@ -2764,15 +2795,16 @@ lemma kp_8x9_ul_non_nil: "kp8x9ul \<noteq> []" by eval
 
 text \<open>A Knight's circuit for the \<open>(8\<times>9)\<close>-board.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      42 & 19 & 38 &  5 & 36 & 21 & 34 &  7 & 60 \\
-      39 &  4 & 41 & 20 & 63 &  6 & 59 & 22 & 33 \\
-      18 & 43 & 70 & 37 & 58 & 35 & 68 & 61 &  8 \\
-       3 & 40 & 49 & 64 & 69 & 62 & 57 & 32 & 23 \\
-      50 & 17 & 44 & 71 & 48 & 67 & 54 &  9 & 56 \\
-      45 &  2 & 65 & 14 & 27 & 12 & 29 & 24 & 31 \\
-      16 & 51 & 72 & 47 & 66 & 53 & 26 & 55 & 10 \\
-       1 & 46 & 15 & 52 & 13 & 28 & 11 & 30 & 25
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      42 & 19 & 38 &  5 & 36 & 21 & 34 &  7 & 60 \\ \hline
+      39 &  4 & 41 & 20 & 63 &  6 & 59 & 22 & 33 \\ \hline
+      18 & 43 & 70 & 37 & 58 & 35 & 68 & 61 &  8 \\ \hline
+       3 & 40 & 49 & 64 & 69 & 62 & 57 & 32 & 23 \\ \hline
+      50 & 17 & 44 & 71 & 48 & 67 & 54 &  9 & 56 \\ \hline
+      45 &  2 & 65 & 14 & 27 & 12 & 29 & 24 & 31 \\ \hline
+      16 & 51 & 72 & 47 & 66 & 53 & 26 & 55 & 10 \\ \hline
+       1 & 46 & 15 & 52 & 13 & 28 & 11 & 30 & 25 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kc8x9 \<equiv> the (to_path 
@@ -2897,12 +2929,13 @@ construct paths and circuits for arbitrary \<open>n\<times>m\<close>-boards.\<cl
 text \<open>A Knight's path for the \<open>(5\<times>5)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllll}
-       7 & 20 &  9 & 14 &  5 \\
-      10 & 25 &  6 & 21 & 16 \\
-      19 &  8 & 15 &  4 & 13 \\
-      24 & 11 &  2 & 17 & 22 \\
-       1 & 18 & 23 & 12 &  3
+    \begin{tabular}{|l|l|l|l|l|}
+      \hline
+       7 & 20 &  9 & 14 &  5 \\ \hline
+      10 & 25 &  6 & 21 & 16 \\ \hline
+      19 &  8 & 15 &  4 & 13 \\ \hline
+      24 & 11 &  2 & 17 & 22 \\ \hline
+       1 & 18 & 23 & 12 &  3 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x5ul \<equiv> the (to_path 
@@ -2917,12 +2950,13 @@ lemma kp_5x5_ul: "knights_path b5x5 kp5x5ul"
 text \<open>A Knight's path for the \<open>(5\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-      17 & 14 & 25 &  6 & 19 &  8 & 29 \\
-      26 & 35 & 18 & 15 & 28 &  5 & 20 \\
-      13 & 16 & 27 & 24 &  7 & 30 &  9 \\
-      34 & 23 &  2 & 11 & 32 & 21 &  4 \\
-       1 & 12 & 33 & 22 &  3 & 10 & 31
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      17 & 14 & 25 &  6 & 19 &  8 & 29 \\ \hline
+      26 & 35 & 18 & 15 & 28 &  5 & 20 \\ \hline
+      13 & 16 & 27 & 24 &  7 & 30 &  9 \\ \hline
+      34 & 23 &  2 & 11 & 32 & 21 &  4 \\ \hline
+       1 & 12 & 33 & 22 &  3 & 10 & 31 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x7ul \<equiv> the (to_path 
@@ -2937,12 +2971,13 @@ lemma kp_5x7_ul: "knights_path b5x7 kp5x7ul"
 text \<open>A Knight's path for the \<open>(5\<times>9)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-       7 & 12 & 37 & 42 &  5 & 18 & 23 & 32 & 27 \\
-      38 & 45 &  6 & 11 & 36 & 31 & 26 & 19 & 24 \\
-      13 &  8 & 43 &  4 & 41 & 22 & 17 & 28 & 33 \\
-      44 & 39 &  2 & 15 & 10 & 35 & 30 & 25 & 20 \\
-       1 & 14 &  9 & 40 &  3 & 16 & 21 & 34 & 29
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+       7 & 12 & 37 & 42 &  5 & 18 & 23 & 32 & 27 \\ \hline
+      38 & 45 &  6 & 11 & 36 & 31 & 26 & 19 & 24 \\ \hline
+      13 &  8 & 43 &  4 & 41 & 22 & 17 & 28 & 33 \\ \hline
+      44 & 39 &  2 & 15 & 10 & 35 & 30 & 25 & 20 \\ \hline
+       1 & 14 &  9 & 40 &  3 & 16 & 21 & 34 & 29 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp5x9ul \<equiv> the (to_path 
@@ -2959,14 +2994,15 @@ abbreviation "b7x7 \<equiv> board 7 7"
 text \<open>A Knight's path for the \<open>(7\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-       9 & 30 & 19 & 42 &  7 & 32 & 17 \\
-      20 & 49 &  8 & 31 & 18 & 43 &  6 \\
-      29 & 10 & 41 & 36 & 39 & 16 & 33 \\
-      48 & 21 & 38 & 27 & 34 &  5 & 44 \\
-      11 & 28 & 35 & 40 & 37 & 26 & 15 \\
-      22 & 47 &  2 & 13 & 24 & 45 &  4 \\
-       1 & 12 & 23 & 46 &  3 & 14 & 25
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+       9 & 30 & 19 & 42 &  7 & 32 & 17 \\ \hline
+      20 & 49 &  8 & 31 & 18 & 43 &  6 \\ \hline
+      29 & 10 & 41 & 36 & 39 & 16 & 33 \\ \hline
+      48 & 21 & 38 & 27 & 34 &  5 & 44 \\ \hline
+      11 & 28 & 35 & 40 & 37 & 26 & 15 \\ \hline
+      22 & 47 &  2 & 13 & 24 & 45 &  4 \\ \hline
+       1 & 12 & 23 & 46 &  3 & 14 & 25 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp7x7ul \<equiv> the (to_path 
@@ -2985,14 +3021,15 @@ abbreviation "b7x9 \<equiv> board 7 9"
 text \<open>A Knight's path for the \<open>(7\<times>9)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      59 &  4 & 17 & 50 & 37 &  6 & 19 & 30 & 39 \\
-      16 & 63 & 58 &  5 & 18 & 51 & 38 &  7 & 20 \\
-       3 & 60 & 49 & 36 & 57 & 42 & 29 & 40 & 31 \\
-      48 & 15 & 62 & 43 & 52 & 35 & 56 & 21 &  8 \\
-      61 &  2 & 13 & 26 & 45 & 28 & 41 & 32 & 55 \\
-      14 & 47 & 44 & 11 & 24 & 53 & 34 &  9 & 22 \\
-       1 & 12 & 25 & 46 & 27 & 10 & 23 & 54 & 33
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      59 &  4 & 17 & 50 & 37 &  6 & 19 & 30 & 39 \\ \hline
+      16 & 63 & 58 &  5 & 18 & 51 & 38 &  7 & 20 \\ \hline
+       3 & 60 & 49 & 36 & 57 & 42 & 29 & 40 & 31 \\ \hline
+      48 & 15 & 62 & 43 & 52 & 35 & 56 & 21 &  8 \\ \hline
+      61 &  2 & 13 & 26 & 45 & 28 & 41 & 32 & 55 \\ \hline
+      14 & 47 & 44 & 11 & 24 & 53 & 34 &  9 & 22 \\ \hline
+       1 & 12 & 25 & 46 & 27 & 10 & 23 & 54 & 33 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp7x9ul \<equiv> the (to_path 
@@ -3011,16 +3048,17 @@ abbreviation "b9x7 \<equiv> board 9 7"
 text \<open>A Knight's path for the \<open>(9\<times>7)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllll}
-       5 & 20 & 53 & 48 &  7 & 22 & 31 \\
-      52 & 63 &  6 & 21 & 32 & 55 &  8 \\
-      19 &  4 & 49 & 54 & 47 & 30 & 23 \\
-      62 & 51 & 46 & 33 & 56 &  9 & 58 \\
-       3 & 18 & 61 & 50 & 59 & 24 & 29 \\
-      14 & 43 & 34 & 45 & 28 & 57 & 10 \\
-      17 &  2 & 15 & 60 & 35 & 38 & 25 \\
-      42 & 13 & 44 & 27 & 40 & 11 & 36 \\
-       1 & 16 & 41 & 12 & 37 & 26 & 39
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+       5 & 20 & 53 & 48 &  7 & 22 & 31 \\ \hline
+      52 & 63 &  6 & 21 & 32 & 55 &  8 \\ \hline
+      19 &  4 & 49 & 54 & 47 & 30 & 23 \\ \hline
+      62 & 51 & 46 & 33 & 56 &  9 & 58 \\ \hline
+       3 & 18 & 61 & 50 & 59 & 24 & 29 \\ \hline
+      14 & 43 & 34 & 45 & 28 & 57 & 10 \\ \hline
+      17 &  2 & 15 & 60 & 35 & 38 & 25 \\ \hline
+      42 & 13 & 44 & 27 & 40 & 11 & 36 \\ \hline
+       1 & 16 & 41 & 12 & 37 & 26 & 39 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp9x7ul \<equiv> the (to_path 
@@ -3041,16 +3079,17 @@ abbreviation "b9x9 \<equiv> board 9 9"
 text \<open>A Knight's path for the \<open>(9\<times>9)\<close>-board that starts in the lower-left and ends in the 
 upper-left.
   \begin{table}[H]
-    \begin{tabular}{lllllllll}
-      13 & 26 & 39 & 52 & 11 & 24 & 37 & 50 &  9 \\
-      40 & 81 & 12 & 25 & 38 & 51 & 10 & 23 & 36 \\
-      27 & 14 & 53 & 58 & 63 & 68 & 73 &  8 & 49 \\
-      80 & 41 & 64 & 67 & 72 & 57 & 62 & 35 & 22 \\
-      15 & 28 & 59 & 54 & 65 & 74 & 69 & 48 &  7 \\
-      42 & 79 & 66 & 71 & 76 & 61 & 56 & 21 & 34 \\
-      29 & 16 & 77 & 60 & 55 & 70 & 75 &  6 & 47 \\
-      78 & 43 &  2 & 31 & 18 & 45 &  4 & 33 & 20 \\
-       1 & 30 & 17 & 44 &  3 & 32 & 19 & 46 &  5
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+      \hline
+      13 & 26 & 39 & 52 & 11 & 24 & 37 & 50 &  9 \\ \hline
+      40 & 81 & 12 & 25 & 38 & 51 & 10 & 23 & 36 \\ \hline
+      27 & 14 & 53 & 58 & 63 & 68 & 73 &  8 & 49 \\ \hline
+      80 & 41 & 64 & 67 & 72 & 57 & 62 & 35 & 22 \\ \hline
+      15 & 28 & 59 & 54 & 65 & 74 & 69 & 48 &  7 \\ \hline
+      42 & 79 & 66 & 71 & 76 & 61 & 56 & 21 & 34 \\ \hline
+      29 & 16 & 77 & 60 & 55 & 70 & 75 &  6 & 47 \\ \hline
+      78 & 43 &  2 & 31 & 18 & 45 &  4 & 33 & 20 \\ \hline
+       1 & 30 & 17 & 44 &  3 & 32 & 19 & 46 &  5 \\ \hline
     \end{tabular}
   \end{table}\<close>
 abbreviation "kp9x9ul \<equiv> the (to_path 
